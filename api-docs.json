@@ -1,0 +1,198 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Barraquinha de Jogos ",
+    "license": {
+      "name": "Apache License 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0"
+    },
+    "version": "v1"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080",
+      "description": "Generated server url"
+    }
+  ],
+  "paths": {
+    "/api/v1/jogo/{id}": {
+      "get": {
+        "tags": [
+          "jogo-controller"
+        ],
+        "description": "Obter os dados completos de uma entidiade pelo id informado!",
+        "operationId": "ObterPorId",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Entidade encontrada",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "jogo-controller"
+        ],
+        "description": "Método utilizado para altlerar os dados de uma entidiade",
+        "operationId": "alterar",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/JogoDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Entidade atualizada",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "404": {
+            "description": "Registro náo encontrado",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "jogo-controller"
+        ],
+        "description": "Método utilizado para remover uma entidiade pela id informado",
+        "operationId": "remover",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Entidade Removida",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/jogo": {
+      "get": {
+        "tags": [
+          "jogo-controller"
+        ],
+        "description": "Listagem Geral",
+        "operationId": "listAll",
+        "responses": {
+          "200": {
+            "description": "Listagem geral",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "404": {
+            "description": "Registro náo encontrado",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "jogo-controller"
+        ],
+        "description": "Método utilizado para realizar a inclusão de um entidade",
+        "operationId": "incluir",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/JogoDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Entidade Incluida",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "JogoDTO": {
+        "type": "object",
+        "properties": {
+          "codigo": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "nomeJogo": {
+            "type": "string"
+          },
+          "desenvolvedora": {
+            "type": "string"
+          },
+          "categoria": {
+            "type": "string"
+          },
+          "valor": {
+            "type": "number"
+          },
+          "dataLancamento": {
+            "type": "string",
+            "format": "date"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "basicScheme": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    }
+  }
+}

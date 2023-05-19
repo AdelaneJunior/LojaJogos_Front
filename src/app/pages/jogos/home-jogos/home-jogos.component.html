@@ -1,0 +1,25 @@
+<mat-card>
+
+  <mat-card-header>
+    <mat-card-title> Lista de Jogos</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-actions>
+
+    <div class="example-button-row">
+      <button mat-raised-button routerLink="/home/jogos" class="button">
+        <mat-icon>home</mat-icon>
+        <span>Inicio</span>
+      </button>
+      <button mat-raised-button routerLink="/home/jogos/novo" class="button">
+        <mat-icon>add</mat-icon>
+        <span>Adcionar Jogo</span>
+      </button>
+    </div>
+  </mat-card-actions>
+
+  <mat-card-content>
+    <router-outlet></router-outlet>
+  </mat-card-content>
+
+</mat-card>

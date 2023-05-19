@@ -1,0 +1,16 @@
+.button {
+  align-items: center;
+  color: #750303 !important;
+  background: white !important;
+  justify-content: flex-start;
+  font-size: 13px;
+}
+
+.example-button-row {
+  display: table-cell;
+  max-width: 600px;
+}
+
+.example-button-row .mat-mdc-button-base {
+  margin: 8px 8px 8px 0;
+}

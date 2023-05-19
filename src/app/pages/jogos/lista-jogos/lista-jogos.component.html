@@ -1,0 +1,49 @@
+<section class="example-container mat-elevation-z8" tabindex="0">
+  <table mat-table [dataSource]="jogoListaDataSource">
+
+    <ng-container matColumnDef="codigo">
+      <th mat-header-cell class="header-cell" *matHeaderCellDef> Codigo</th>
+      <td mat-cell class="cell" *matCellDef="let element"> {{element.codigo}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="nomeJogo">
+      <th mat-header-cell class="header-cell" *matHeaderCellDef> Nome Jogo</th>
+      <td mat-cell class="cell" *matCellDef="let element"> {{element.nomeJogo}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="categoria">
+      <th mat-header-cell class="header-cell" *matHeaderCellDef> Categoria</th>
+      <td mat-cell class="cell" *matCellDef="let element"> {{element.categoria}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="desenvolvedora">
+      <th mat-header-cell class="header-cell" *matHeaderCellDef> Desenvolvedora</th>
+      <td mat-cell class="cell" *matCellDef="let element"> {{element.desenvolvedora}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="dataLancamento">
+      <th mat-header-cell class="header-cell" *matHeaderCellDef> Data Lançamento</th>
+      <td mat-cell class="cell" *matCellDef="let element"> {{element.dataLancamento}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="valor">
+      <th mat-header-cell class="header-cell" *matHeaderCellDef> Valor</th>
+      <td mat-cell class="cell" *matCellDef="let element"> {{element.valor}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="acao">
+      <th mat-header-cell class="header-cell" *matHeaderCellDef>Ações</th>
+      <td mat-cell class="cell" *matCellDef="let element">
+        <button mat-icon-button (click)="confirmarExcluir(element)" class="button">
+          <mat-icon>cancel</mat-icon>
+        </button>
+        <button mat-icon-button (click)="navegarParaAlteracao(element)" class="button">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="colunasMostrar; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: colunasMostrar;"></tr>
+  </table>
+</section>

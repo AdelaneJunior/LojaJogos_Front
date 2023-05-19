@@ -1,0 +1,53 @@
+<mat-toolbar class="mat-elevation-z8">
+  <button
+    mat-icon-button
+    (click)="sidenav.toggle()"
+  >
+    <mat-icon>list</mat-icon>
+
+  </button>
+  LOJA DE JOGOS DO BEBEL
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
+    <img
+      class="avatar mat-elevation-z8"
+      src="https://i.pinimg.com/564x/12/a5/9f/12a59f00e17a512a2c6adaba09c1a031.jpg"
+    />
+
+    <h4 class="name">Barraquinha do Zebu</h4>
+    <p class="designation">Desde sempre produzindo os melhores games</p>
+
+    <mat-divider></mat-divider>
+
+    <button mat-button class="menu-button" routerLink="/home">
+      <mat-icon>home</mat-icon>
+      <span>Inicio</span>
+    </button>
+    <button mat-button class="menu-button" routerLink="/home/jogos">
+      <mat-icon>view_list</mat-icon>
+      <span>Lista de Jogos</span>
+    </button>
+    <button mat-button class="menu-button" routerLink="/home/jogos/novo">
+      <mat-icon>library_add</mat-icon>
+      <span>Adicionar Jogo</span>
+    </button>
+    <button mat-button class="menu-button" routerLink="/about">
+      <mat-icon>info</mat-icon>
+      <span>Informações</span>
+    </button>
+
+    <mat-divider></mat-divider>
+
+    <button mat-button class="menu-button" routerLink="/help">
+      <mat-icon>help</mat-icon>
+      <span>Ajuda</span>
+    </button>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="content mat-elevation-z8">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
