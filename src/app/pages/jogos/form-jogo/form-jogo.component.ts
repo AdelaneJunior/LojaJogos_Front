@@ -29,7 +29,7 @@ export class FormJogoComponent implements OnInit {
    public jogoService: JogoControllerService,
    private dialog: MatDialog,
    private router: Router,
-   private route: ActivatedRoute) {
+   private activatedRoute: ActivatedRoute) {
 
     this._adapter.setLocale('pt-br');
 
@@ -37,7 +37,7 @@ export class FormJogoComponent implements OnInit {
 
   ngOnInit() {
 
-    this.route.queryParams
+    this.activatedRoute.queryParams
       .subscribe((params) => {
         this.montaJogo = params;
         this.jogoDTO = this.montaJogo;
