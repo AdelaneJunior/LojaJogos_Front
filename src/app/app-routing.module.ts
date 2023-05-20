@@ -7,11 +7,6 @@ import {FormJogoComponent} from "./pages/jogos/form-jogo/form-jogo.component";
 const routes: Routes = [
   {
     path: '',
-    pathMatch: 'full',
-    redirectTo: 'home',
-  },
-  {
-    path: 'home',
     component: HomeComponent,
     children: [...JogosRoutes]
   },
