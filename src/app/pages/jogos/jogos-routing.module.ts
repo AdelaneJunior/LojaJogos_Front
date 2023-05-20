@@ -19,6 +19,10 @@ export const JogosRoutes: Routes = [
       {
         path: "novo",
         component: FormJogoComponent
+      },
+      {
+        path: ":codigo",
+        component: FormJogoComponent
       }
     ]
   }

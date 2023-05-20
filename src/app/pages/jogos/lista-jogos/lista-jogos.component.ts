@@ -87,15 +87,10 @@ export class ListaJogosComponent implements OnInit {
     });
   }
 
-  navegarParaAlteracao(jogoDto: JogoDto) {
-    console.log("JOGO:", jogoDto)
+  navegarParaAlteracao(codigo:number) {
+    console.log("JOGO:", codigo)
     this.router.navigate(['/home/jogos/novo'],{ queryParams:{
-          codigo: jogoDto.codigo,
-          nomeJogo: jogoDto.nomeJogo,
-          desenvolvedora: jogoDto.desenvolvedora,
-          categoria: jogoDto.categoria,
-          dataLancamento :jogoDto.dataLancamento,
-          valor: jogoDto.valor }
+          codigo: codigo}
       })
   }
 

@@ -37,7 +37,7 @@
         <button mat-icon-button (click)="confirmarExcluir(element)" class="button">
           <mat-icon>cancel</mat-icon>
         </button>
-        <button mat-icon-button (click)="navegarParaAlteracao(element)" class="button">
+        <button mat-icon-button [routerLink]="['/jogos',element.codigo]" >
           <mat-icon>edit</mat-icon>
         </button>
       </td>

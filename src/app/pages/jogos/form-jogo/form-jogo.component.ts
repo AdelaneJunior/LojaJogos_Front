@@ -17,11 +17,13 @@ import {subscribeOn} from "rxjs";
   templateUrl: './form-jogo.component.html',
   styleUrls: ['./form-jogo.component.css']
 })
-export class FormJogoComponent implements OnInit {
+export class FormJogoComponent {
   formGroup !: FormGroup;
-  jogoDTO!: JogoDto;
-  montaJogo: any
-  botao:string = "Adicionar";
+  codigo!: number;
+  paramCodigo: any
+  private readonly BOTAO_ADICIONAR = "Adicionar";
+  private readonly BOTAO_ALTERAR = "Alterar";
+  botao: string = this.BOTAO_ADICIONAR;
 
   constructor
   (private formBuilder: FormBuilder,
@@ -32,44 +34,54 @@ export class FormJogoComponent implements OnInit {
    private activatedRoute: ActivatedRoute) {
 
     this._adapter.setLocale('pt-br');
-
+    this.createForm();
+    this.preencheForm();
   }
 
-  ngOnInit() {
+  preencheForm() {
 
-    this.activatedRoute.queryParams
-      .subscribe((params) => {
-        this.montaJogo = params;
-        this.jogoDTO = this.montaJogo;
+    this.paramCodigo = this.activatedRoute.snapshot.paramMap.get('codigo')
 
-        if(this.jogoDTO.codigo != null){
-          this.botao = "Alterar";
-        }
+    if (this.paramCodigo) {
 
-        console.log("Param: ", params)
-        console.log("Monta", this.montaJogo)
-        console.log("Jogo: ", this.jogoDTO)
-        this.preencheForm(this.jogoDTO);
-      });
+      this.codigo = parseInt(this.paramCodigo)
+
+      console.log("Monta", this.paramCodigo)
+      console.log("Codigo", this.codigo)
+
+      if (this.codigo != null) {
+        this.jogoService.obterPorId({id: this.codigo}).subscribe(
+          retorno => {
+            this.codigo = retorno.codigo;
+            this.botao = this.BOTAO_ALTERAR;
+            console.log("Retorno", retorno)
+            this.formGroup.patchValue(retorno);
+          }
+        )
+      }
+    }
   }
 
-  preencheForm(jogoDto: JogoDto) {
+  createForm() {
+
     this.formGroup = this.formBuilder.group({
-      codigo: [jogoDto.codigo],
-      nomeJogo: [jogoDto.nomeJogo, Validators.required],
-      dataLancamento: [jogoDto.dataLancamento, Validators.required],
-      desenvolvedora: [jogoDto.desenvolvedora, Validators.required],
-      valor: [jogoDto.valor, Validators.required],
-      categoria: [jogoDto.categoria, Validators.required],
+
+      nomeJogo: [null, Validators.required],
+      desenvolvedora: [null, Validators.required],
+      categoria: [null, Validators.required],
+      valor: [null, Validators.required],
+      dataLancamento: [null, Validators.required],
     });
+
     console.log("Dados:", this.formGroup.value);
+
   }
 
   onSubmit() {
     console.log("Dados: ", this.formGroup.value);
 
-    if (this.jogoDTO.codigo != null) {
-      this.jogoService.alterar({id: this.jogoDTO.codigo, body: this.formGroup.value}).subscribe(
+    if (this.codigo != null) {
+      this.jogoService.alterar({id: this.codigo, body: this.formGroup.value}).subscribe(
         retorno => {
           console.log("alterou:", retorno);
           this.confirmarAlteracao(retorno);
@@ -97,7 +109,10 @@ export class FormJogoComponent implements OnInit {
     return this.formGroup.controls[controlName].hasError(errorName);
   };
 
-  confirmarInclusao(jogoDto: JogoDto) {
+  confirmarInclusao(jogoDto
+                      :
+                      JogoDto
+  ) {
     const dialogRef = this.dialog.open(ConfirmationDialog, {
       data: {
         titulo: 'Mensagem!!!',
@@ -114,7 +129,10 @@ export class FormJogoComponent implements OnInit {
     });
   }
 
-  confirmarAlteracao(jogoDto: JogoDto) {
+  confirmarAlteracao(jogoDto
+                       :
+                       JogoDto
+  ) {
     const dialogRef = this.dialog.open(ConfirmationDialog, {
       data: {
         titulo: 'Mensagem!!!',
@@ -132,7 +150,7 @@ export class FormJogoComponent implements OnInit {
   }
 
   navegarParaLista() {
-    this.router.navigate(['/home/jogos'])
+    this.router.navigate(['/jogos'])
   }
 }
 
