@@ -1,0 +1,81 @@
+.avatar {
+  display: flex;
+  margin-right: auto;
+  margin-left: auto;
+  width: 400px;
+  height: 400px;
+  border-radius: 25%;
+  margin-bottom: -60px;
+}
+
+.logo-login{
+  margin-left: -100px;
+  margin-right: 300px;
+  align-content: center;
+  place-content: center;
+}
+
+.barraca{
+  font-size: 50px;
+  align-content: center;
+  color: #750303;
+  font-family: "Impact";
+}
+
+.login-container {
+  width: 100%;
+  padding-top: 10%;
+  margin-right: auto;
+  margin-left: auto;
+  display: flex;
+  flex-direction: row;
+  place-content: center;
+  align-items: center;
+}
+
+mat-card {
+  margin-top: 30px;
+  width: 450px;
+  height: 400px;
+  display: flex;
+  border-radius: 7%;
+}
+
+.borda{
+  border-radius: 7%;
+  border-width: thin;
+  border-style: groove;
+  border-color: #650303;
+}
+.login-content {
+  padding-top: 40px;
+  display: flex;
+  flex-direction: column;
+  place-content: flex-end;
+  align-items: center;
+}
+
+.icon_size {
+  font-size: 6em;
+  margin-bottom: 40px;
+  margin-left: -1em;
+
+}
+
+.button {
+  margin-top: 5%;
+  align-items: center;
+  background: #750303 !important;
+  color: white !important;
+  justify-content: flex-start;
+  font-size: 17px;
+}
+
+.titulo{
+  font-size: 38px;
+  color: #750303;
+  font-family: "Graphik Semibold";
+  place-content: center;
+  align-items: center;
+  margin-bottom: 50px;
+}

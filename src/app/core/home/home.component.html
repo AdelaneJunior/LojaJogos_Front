@@ -33,14 +33,19 @@
       <mat-icon>library_add</mat-icon>
       <span>Adicionar Jogo</span>
     </button>
-    <button mat-button class="menu-button" routerLink="/about">
-      <mat-icon>info</mat-icon>
-      <span>Informações</span>
+    <button mat-button class="menu-button" routerLink="/avaliacao">
+      <mat-icon>star</mat-icon>
+      <span>Avaliações de Jogos</span>
     </button>
 
     <mat-divider></mat-divider>
 
-    <button mat-button class="menu-button" routerLink="/help">
+    <button mat-button class="menu-button" (click)="sair()">
+      <mat-icon>logout</mat-icon>
+      <span>Sair</span>
+    </button>
+
+    <button mat-button class="menu-button" routerLink="">
       <mat-icon>help</mat-icon>
       <span>Ajuda</span>
     </button>

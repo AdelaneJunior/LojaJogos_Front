@@ -5,6 +5,8 @@ import { HttpClient } from '@angular/common/http';
 import { ApiConfiguration, ApiConfigurationParams } from './api-configuration';
 
 import { JogoControllerService } from './services/jogo-controller.service';
+import { AvaliacaoControllerService } from './services/avaliacao-controller.service';
+import { AuthApiService } from './services/auth-api.service';
 
 /**
  * Module that provides all services and configuration.
@@ -15,6 +17,8 @@ import { JogoControllerService } from './services/jogo-controller.service';
   declarations: [],
   providers: [
     JogoControllerService,
+    AvaliacaoControllerService,
+    AuthApiService,
     ApiConfiguration
   ],
 })
@@ -31,7 +35,7 @@ export class ApiModule {
     }
   }
 
-  constructor( 
+  constructor(
     @Optional() @SkipSelf() parentModule: ApiModule,
     @Optional() http: HttpClient
   ) {

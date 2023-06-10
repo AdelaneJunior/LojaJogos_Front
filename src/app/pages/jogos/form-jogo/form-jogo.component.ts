@@ -9,8 +9,6 @@ import {
   ConfirmationDialogResult
 } from "../../../core/confirmation-dialog/confirmation-dialog.component";
 import {ActivatedRoute, Router} from "@angular/router";
-import {addBodyClass} from "@angular/cdk/schematics";
-import {subscribeOn} from "rxjs";
 
 @Component({
   selector: 'app-form-jogo',
@@ -129,9 +127,7 @@ export class FormJogoComponent {
     });
   }
 
-  confirmarAlteracao(jogoDto
-                       :
-                       JogoDto
+  confirmarAlteracao(jogoDto: JogoDto
   ) {
     const dialogRef = this.dialog.open(ConfirmationDialog, {
       data: {

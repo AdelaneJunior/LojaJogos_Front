@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
 import {JogoDto} from "../../../api/models/jogo-dto";
 import {JogoControllerService} from "../../../api/services/jogo-controller.service";
-import {MatTableModule} from '@angular/material/table';
 import {
   ConfirmationDialog,
   ConfirmationDialogResult
@@ -18,7 +17,7 @@ import {Router} from "@angular/router";
 })
 export class ListaJogosComponent implements OnInit {
 
-  colunasMostrar = ['codigo', 'nomeJogo', 'categoria', 'desenvolvedora', 'dataLancamento', 'valor', 'acao'];
+  colunasMostrar = ['codigo', 'nomeJogo', 'categoria', 'desenvolvedora', 'dataLancamento', 'valor', 'nota', 'acao'];
   jogoListaDataSource: MatTableDataSource<JogoDto> = new MatTableDataSource<JogoDto>([]);
 
   constructor(
@@ -87,11 +86,12 @@ export class ListaJogosComponent implements OnInit {
     });
   }
 
-  navegarParaAlteracao(codigo:number) {
-    console.log("JOGO:", codigo)
-    this.router.navigate(['/home/jogos/novo'],{ queryParams:{
-          codigo: codigo}
-      })
-  }
+  //
+  // navegarParaAlteracao(codigo:number) {
+  //   console.log("JOGO:", codigo)
+  //   this.router.navigate(['/home/jogos/novo'],{ queryParams:{
+  //         codigo: codigo}
+  //     })
+  // }
 
 }

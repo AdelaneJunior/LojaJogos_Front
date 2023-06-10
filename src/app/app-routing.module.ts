@@ -2,14 +2,22 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {HomeComponent} from "./core/home/home.component";
 import {JogosRoutes} from "./pages/jogos/jogos-routing.module";
-import {FormJogoComponent} from "./pages/jogos/form-jogo/form-jogo.component";
+import {AutenticacaoRoutes} from "./arquitetura/autenticacao/autenticacao.routing";
+import {AvaliacoesRoutes} from "./pages/avaliacoes/avaliacoes-routing.module";
 
 const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
-    children: [...JogosRoutes]
+    children: [...JogosRoutes, ...AvaliacoesRoutes]
   },
+  {
+    path: "acesso",
+    children: [
+      ...AutenticacaoRoutes
+    ]
+
+  }
 ];
 
 @NgModule({

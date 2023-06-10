@@ -14,6 +14,11 @@
       "description": "Generated server url"
     }
   ],
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
   "paths": {
     "/api/v1/jogo/{id}": {
       "get": {
@@ -38,6 +43,26 @@
             "description": "Entidade encontrada",
             "content": {
               "application/json": {}
+            }
+          },
+          "404": {
+            "description": "Registro não encontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Acesso negado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
             }
           }
         }
@@ -71,15 +96,39 @@
         },
         "responses": {
           "200": {
-            "description": "Entidade atualizada",
+            "description": "Listagem geral",
             "content": {
               "application/json": {}
             }
           },
           "404": {
-            "description": "Registro náo encontrado",
+            "description": "Registro não encontrado",
             "content": {
-              "application/json": {}
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Acesso negado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro de Negócio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
             }
           }
         }
@@ -107,6 +156,93 @@
             "content": {
               "application/json": {}
             }
+          },
+          "404": {
+            "description": "Registro não encontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Acesso negado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth/senha": {
+      "put": {
+        "tags": [
+          "Auth API"
+        ],
+        "description": "Inclusão ou alteração a senha do usuário.",
+        "operationId": "redefinirSenha",
+        "parameters": [
+          {
+            "name": "requestToken",
+            "in": "query",
+            "description": "Request Token",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Request-Token",
+            "in": "header",
+            "description": "Request Token",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UsuarioSenhaDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CredencialDTO"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MessageResponse"
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -126,9 +262,33 @@
             }
           },
           "404": {
-            "description": "Registro náo encontrado",
+            "description": "Registro não encontrado",
             "content": {
-              "application/json": {}
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Acesso negado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro de Negócio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
             }
           }
         }
@@ -155,6 +315,326 @@
             "content": {
               "application/json": {}
             }
+          },
+          "403": {
+            "description": "Acesso negado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro de Negócio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth/login": {
+      "post": {
+        "tags": [
+          "Auth API"
+        ],
+        "description": "Concede o token de acesso ao Usuário através do 'login' e 'senha'.",
+        "operationId": "login",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CredencialDTO"
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Proibido",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MessageResponse"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MessageResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth/senha/solicitacao/{email}": {
+      "get": {
+        "tags": [
+          "Auth API"
+        ],
+        "description": "Realiza a solicitação de recuperar a senha do usuário.",
+        "operationId": "recuperarSenha",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "path",
+            "description": "EMail do Usuário",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CredencialDTO"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MessageResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth/senha/solicitacao/info": {
+      "get": {
+        "tags": [
+          "Auth API"
+        ],
+        "description": "Valida o token de alteração de senha.",
+        "operationId": "getInfoByTokenValidacao",
+        "parameters": [
+          {
+            "name": "requestToken",
+            "in": "query",
+            "description": "Request Token",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Request-Token",
+            "in": "header",
+            "description": "Request Token",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Proibido",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MessageResponse"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MessageResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth/refresh": {
+      "get": {
+        "tags": [
+          "Auth API"
+        ],
+        "description": "Concede um novo token de acesso conforme o token de refresh informado.",
+        "operationId": "refresh",
+        "parameters": [
+          {
+            "name": "refreshToken",
+            "in": "query",
+            "description": "Token de refresh",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CredencialDTO"
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Proibido",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MessageResponse"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MessageResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth/info": {
+      "get": {
+        "tags": [
+          "Auth API"
+        ],
+        "description": "Recupera as informações do Usuário conforme o token informado.",
+        "operationId": "getInfoByToken",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CredencialDTO"
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Proibido",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MessageResponse"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MessageResponse"
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -162,6 +642,57 @@
   },
   "components": {
     "schemas": {
+      "FieldResponse": {
+        "type": "object",
+        "properties": {
+          "attribute": {
+            "type": "string",
+            "description": "Nome do atributo"
+          },
+          "description": {
+            "type": "string",
+            "description": "Descrição da validação"
+          }
+        },
+        "description": "Atributos de validação"
+      },
+      "MessageResponse": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Código da Mensagem"
+          },
+          "status": {
+            "type": "integer",
+            "description": "Status HTTP",
+            "format": "int32"
+          },
+          "error": {
+            "type": "string",
+            "description": "Descrição erro HTTP"
+          },
+          "message": {
+            "type": "string",
+            "description": "Mensagem de negócio"
+          },
+          "parameters": {
+            "type": "array",
+            "description": "Parâmetros da mensagem",
+            "items": {
+              "type": "object",
+              "description": "Parâmetros da mensagem"
+            }
+          },
+          "attributes": {
+            "type": "array",
+            "description": "Atributos de validação",
+            "items": {
+              "$ref": "#/components/schemas/FieldResponse"
+            }
+          }
+        }
+      },
       "JogoDTO": {
         "type": "object",
         "properties": {
@@ -186,12 +717,112 @@
             "format": "date"
           }
         }
+      },
+      "CredencialDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Id do Usuário",
+            "format": "int64"
+          },
+          "nome": {
+            "type": "string",
+            "description": "Nome do Usuário"
+          },
+          "login": {
+            "type": "string",
+            "description": "Login do Usuário"
+          },
+          "email": {
+            "type": "string",
+            "description": "Email do Usário"
+          },
+          "roles": {
+            "type": "array",
+            "description": "Lista de permissões do Usuário",
+            "items": {
+              "type": "string",
+              "description": "Lista de permissões do Usuário"
+            }
+          },
+          "accessToken": {
+            "type": "string",
+            "description": "Token de acesso"
+          },
+          "expiresIn": {
+            "type": "integer",
+            "description": "Tempo de expiração do token de acesso",
+            "format": "int64"
+          },
+          "refreshToken": {
+            "type": "string",
+            "description": "Token de refresh"
+          },
+          "refreshExpiresIn": {
+            "type": "integer",
+            "description": "Tempo de expiração do token de refresh",
+            "format": "int64"
+          },
+          "statusAtivo": {
+            "type": "boolean",
+            "description": "Indica se o usuário está ativo"
+          }
+        },
+        "description": "Representação de Credencial do Usuário"
+      },
+      "UsuarioSenhaDTO": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "E-mail do Usuário onde a solicitação de senha foi enviada. (Campo não será considerado como parâmetro de entrada)"
+          },
+          "senhaAntiga": {
+            "maxLength": 20,
+            "minLength": 8,
+            "type": "string",
+            "description": "Senha Antiga"
+          },
+          "novaSenha": {
+            "maxLength": 20,
+            "minLength": 8,
+            "type": "string",
+            "description": "Nova Senha"
+          },
+          "confirmarSenha": {
+            "maxLength": 20,
+            "minLength": 8,
+            "type": "string",
+            "description": "Confirmar Senha"
+          }
+        },
+        "description": "Informações da Redefinição de Senha"
+      },
+      "AuthDTO": {
+        "required": [
+          "login",
+          "senha"
+        ],
+        "type": "object",
+        "properties": {
+          "login": {
+            "type": "string",
+            "description": "Login do Usuário"
+          },
+          "senha": {
+            "type": "string",
+            "description": "Senha do Usuário"
+          }
+        },
+        "description": "Informações de Autenticação"
       }
     },
     "securitySchemes": {
-      "basicScheme": {
+      "bearerAuth": {
         "type": "http",
-        "scheme": "basic"
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
       }
     }
   }

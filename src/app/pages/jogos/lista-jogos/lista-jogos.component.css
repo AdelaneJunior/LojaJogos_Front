@@ -10,8 +10,7 @@ table {
 .header-cell {
   background: #750303 !important;
   color: white !important;
-  font-size: 13px;
-  place-content: center;
+  font-size: 14px;
 }
 
 .cell{
@@ -25,4 +24,9 @@ table {
   background: white !important;
   justify-content: flex-start;
   font-size: 13px;
+}
+
+td, th {
+  text-align: center !important;
+  vertical-align: middle !important;
 }

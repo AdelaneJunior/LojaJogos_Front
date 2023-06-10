@@ -1,0 +1,45 @@
+<div class="login-container">
+  <div class="logo-login">
+    <mat-card-content>
+      <img class="avatar"
+           src="https://i.pinimg.com/564x/12/a5/9f/12a59f00e17a512a2c6adaba09c1a031.jpg"/>
+
+      <h4 class="barraca">Barraquinha do Zebu</h4>
+
+    </mat-card-content>
+  </div>
+  <div class="borda">
+  <mat-card>
+    <mat-card-content>
+      <form
+        [formGroup]="formGroup"
+        (ngSubmit)="onSubmit()"
+        class="form"
+      >
+        <div class="login-content">
+
+          <mat-label class="titulo">
+            ENTRAR
+          </mat-label>
+          <mat-form-field>
+            <mat-label>Usuário</mat-label>
+            <input matInput formControlName="login" autocomplete="off"
+                   placeholder="Usuário" maxlength="20">
+
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Senha</mat-label>
+            <input matInput formControlName="senha" type="password" title="Senha"
+                   placeholder="Senha" >
+
+          </mat-form-field>
+          <button mat-raised-button type="submit" title="Entrar" class="button">
+            <span>Entrar</span>
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+  </div>
+</div>
