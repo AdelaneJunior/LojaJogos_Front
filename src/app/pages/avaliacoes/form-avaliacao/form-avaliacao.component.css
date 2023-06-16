@@ -1,10 +1,11 @@
 .input-row mat-form-field + mat-form-field {
   margin-left: 8px;
+
 }
 
 .button-left {
-  float: right;
-  margin-right: 10px;
+  float: left;
+  margin-left: 400px;
 }
 
 .button {
@@ -22,4 +23,23 @@ mat-form-field {
 input.example-right-align::-webkit-outer-spin-button,
 input.example-right-align::-webkit-inner-spin-button {
   display: none;
+}
+
+.nome-jogo{
+  width: 250px;
+  color: black !important;
+}
+mat-label{
+  color: black !important;
+}
+.area-descricao{
+  width: 500px;
+}
+
+textarea{
+  resize: none;
+}
+
+mat-slider {
+  margin-left: 15px;
 }

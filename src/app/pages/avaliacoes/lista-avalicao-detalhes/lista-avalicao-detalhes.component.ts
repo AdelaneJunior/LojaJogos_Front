@@ -1,23 +1,23 @@
-import {Component, OnInit} from '@angular/core';
-import {ViewChild} from '@angular/core';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatSort} from '@angular/material/sort';
-import {MatTableDataSource} from '@angular/material/table';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {MatTableDataSource} from "@angular/material/table";
 import {AvaliacaoDto} from "../../../api/models/avaliacao-dto";
+import {MatPaginator} from "@angular/material/paginator";
+import {MatSort} from "@angular/material/sort";
+import {AvaliacaoControllerService} from "../../../api/services/avaliacao-controller.service";
 import {MatDialog} from "@angular/material/dialog";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {Router} from "@angular/router";
-import {AvaliacaoControllerService} from "../../../api/services/avaliacao-controller.service";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
-  selector: 'app-lista-avaliacao',
-  templateUrl: './lista-avaliacao.component.html',
-  styleUrls: ['./lista-avaliacao.component.css']
+  selector: 'app-lista-avalicao-detalhes',
+  templateUrl: './lista-avalicao-detalhes.component.html',
+  styleUrls: ['./lista-avalicao-detalhes.component.css']
 })
-export class ListaAvaliacaoComponent implements OnInit {
+export class ListaAvalicaoDetalhesComponent {
 
-
-  displayedColumns: string[] = ['nomeJogo', 'notaGeral', 'acao'];
+  jogoSeq!:number
+  paramJogoSeq:any
+  displayedColumns: string[] = ['nomeJogo', 'nota', 'detalhes'];
   avalicaoListaDataSource: MatTableDataSource<AvaliacaoDto> = new MatTableDataSource<AvaliacaoDto>([]);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -25,15 +25,15 @@ export class ListaAvaliacaoComponent implements OnInit {
 
   constructor(
     public avalicaoService: AvaliacaoControllerService,
+    private activatedRoute: ActivatedRoute,
     private dialog: MatDialog,
     private snackBar: MatSnackBar,
-    private router: Router) {
-
-  }
-
-  ngOnInit(): void {
+    private router: Router
+  ) {
     this.buscarDados();
+
   }
+
   ngAfterViewInit() {
     this.avalicaoListaDataSource.paginator = this.paginator;
     this.avalicaoListaDataSource.sort = this.sort;
@@ -41,7 +41,9 @@ export class ListaAvaliacaoComponent implements OnInit {
 
   private buscarDados() {
 
-    this.avalicaoService.obterJogosAvaliadosComMedia().subscribe(data => {
+    this.paramJogoSeq = this.activatedRoute.snapshot.paramMap.get('jogoSeq')
+    this.jogoSeq = parseInt(this.paramJogoSeq)
+    this.avalicaoService.obterListaAvaliacaoPorJogo({jogoSeq:this.jogoSeq}).subscribe(data => {
       this.avalicaoListaDataSource.data = data;
     })
 
@@ -55,5 +57,6 @@ export class ListaAvaliacaoComponent implements OnInit {
       this.avalicaoListaDataSource.paginator.firstPage();
     }
   }
+
 
 }

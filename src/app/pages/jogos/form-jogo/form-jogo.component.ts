@@ -107,10 +107,7 @@ export class FormJogoComponent {
     return this.formGroup.controls[controlName].hasError(errorName);
   };
 
-  confirmarInclusao(jogoDto
-                      :
-                      JogoDto
-  ) {
+  confirmarInclusao(jogoDto: JogoDto) {
     const dialogRef = this.dialog.open(ConfirmationDialog, {
       data: {
         titulo: 'Mensagem!!!',

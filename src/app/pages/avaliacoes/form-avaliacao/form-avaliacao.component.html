@@ -1,32 +1,42 @@
 <form
   [formGroup]="formGroup"
   (ngSubmit)="onSubmit()"
-  class="form"
-  xmlns="http://www.w3.org/1999/html">
+  class="form">
+
   <div class="input-row">
 
-    <mat-form-field appearance="fill">
+    <mat-form-field appearance="fill" class="nome-jogo">
       <mat-label>Nome do Jogo</mat-label>
-      <input matInput formControlName="nomeJogo">
+      <input class="nome-jogo" matInput formControlName="nomeJogo">
+      <mat-error *ngIf="handleError('nomeJogo', 'required')">
+        O jogo é obrigatório
+      </mat-error>
 
     </mat-form-field>
 
-    <mat-form-field appearance="fill">
-      <mat-label>Descrição</mat-label>
-      <textarea matInput formControlName="descricao"></textarea>
-    </mat-form-field>
+    <mat-label>NOTA {{value}}</mat-label>
+      <mat-slider min="1" max="5" step="1" showThumbLabel discrete color="warn">
+        <input matSliderThumb formControlName="nota" [(ngModel)]="value">
+      </mat-slider>
 
-    <mat-form-field appearance="fill">
-      <mat-label>Nota</mat-label>
-      <input matInput type="number" formControlName="nota"  placeholder="1/5">
-
-    </mat-form-field>
-
-
-  <div class="button-left">
-    <button mat-raised-button type="submit" class="button">
-      <mat-icon>add</mat-icon>
-    </button>
   </div>
+
+  <div class="input-row">
+    <mat-form-field appearance="fill" class="area-descricao">
+      <mat-label>Descrição</mat-label>
+      <input matInput formControlName="descricao">
+
+      <mat-error *ngIf="handleError('descricao', 'required')">
+        A descrição para avaliacao do jogo é obrigatória
+      </mat-error>
+
+    </mat-form-field>
+    <br>
+    <div class="button-left">
+      <button mat-raised-button type="submit" class="button">
+        <mat-icon>star</mat-icon>
+        Avaliar
+      </button>
+    </div>
   </div>
 </form>

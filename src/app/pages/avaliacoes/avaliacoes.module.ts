@@ -18,14 +18,16 @@ import {MatNativeDateModule} from "@angular/material/core";
 import { ListaAvaliacaoComponent } from './lista-avaliacao/lista-avaliacao.component';
 import {MatSortModule} from "@angular/material/sort";
 import {MatPaginatorModule} from "@angular/material/paginator";
-
-
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatSliderModule} from '@angular/material/slider';
+import { ListaAvalicaoDetalhesComponent } from './lista-avalicao-detalhes/lista-avalicao-detalhes.component';
 
 @NgModule({
   declarations: [
     FormAvaliacaoComponent,
     HomeAvaliacaoComponent,
-    ListaAvaliacaoComponent
+    ListaAvaliacaoComponent,
+    ListaAvalicaoDetalhesComponent
   ],
   imports: [
     CommonModule,
@@ -42,6 +44,8 @@ import {MatPaginatorModule} from "@angular/material/paginator";
     MatNativeDateModule,
     MatSortModule,
     MatPaginatorModule,
+    MatButtonToggleModule,
+    MatSliderModule
   ]
 })
 export class AvaliacoesModule { }
