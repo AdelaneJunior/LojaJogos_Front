@@ -49,14 +49,5 @@ export class ListaAvalicaoDetalhesComponent {
 
   }
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.avalicaoListaDataSource.filter = filterValue.trim().toLowerCase();
-
-    if (this.avalicaoListaDataSource.paginator) {
-      this.avalicaoListaDataSource.paginator.firstPage();
-    }
-  }
-
 
 }
