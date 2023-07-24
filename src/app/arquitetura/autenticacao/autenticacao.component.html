@@ -9,37 +9,45 @@
     </mat-card-content>
   </div>
   <div class="borda">
-  <mat-card>
-    <mat-card-content>
-      <form
-        [formGroup]="formGroup"
-        (ngSubmit)="onSubmit()"
-        class="form"
-      >
-        <div class="login-content">
+    <mat-card>
+      <mat-card-content>
+        <form
+          [formGroup]="formGroup"
+          (ngSubmit)="onSubmit()"
+          class="form"
+        >
+          <div class="login-content">
 
-          <mat-label class="titulo">
-            ENTRAR
-          </mat-label>
-          <mat-form-field>
-            <mat-label>Usuário</mat-label>
-            <input matInput formControlName="login" autocomplete="off"
-                   placeholder="Usuário" maxlength="20">
+            <mat-label class="titulo">
+              ENTRAR
+            </mat-label>
+            <mat-form-field>
+              <mat-label>Usuário</mat-label>
+              <input matInput formControlName="login" autocomplete="off"
+                     placeholder="Usuário" maxlength="20">
 
-          </mat-form-field>
+            </mat-form-field>
 
-          <mat-form-field>
-            <mat-label>Senha</mat-label>
-            <input matInput formControlName="senha" type="password" title="Senha"
-                   placeholder="Senha" >
+            <mat-form-field>
+              <mat-label>Senha</mat-label>
+              <input matInput formControlName="senha" type="password" title="Senha"
+                     placeholder="Senha">
 
-          </mat-form-field>
-          <button mat-raised-button type="submit" title="Entrar" class="button">
-            <span>Entrar</span>
-          </button>
-        </div>
-      </form>
-    </mat-card-content>
-  </mat-card>
+            </mat-form-field>
+
+            <div>
+              <button mat-raised-button type="submit" title="Entrar" class="button">
+                <span>Entrar</span>
+              </button>
+
+              <button mat-raised-button routerLink="." title="Cadastrar" class="button">
+                <span>Cadastrar</span>
+              </button>
+            </div>
+
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
   </div>
 </div>

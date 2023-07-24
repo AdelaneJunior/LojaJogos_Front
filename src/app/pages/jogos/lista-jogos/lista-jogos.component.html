@@ -1,5 +1,14 @@
 <section class="example-container mat-elevation-z8" tabindex="0">
+
   <table mat-table [dataSource]="jogoListaDataSource">
+
+    <ng-container matColumnDef="caminhoImagem">
+      <th mat-header-cell class="header-cell" *matHeaderCellDef> Capa</th>
+      <td mat-cell class="cell" *matCellDef="let element">
+
+        <img src=" {{element.caminhoImagem}}" width="150px" height="175px" class="imagem">
+      </td>
+    </ng-container>
 
     <ng-container matColumnDef="codigo">
       <th mat-header-cell class="header-cell" *matHeaderCellDef> Codigo</th>

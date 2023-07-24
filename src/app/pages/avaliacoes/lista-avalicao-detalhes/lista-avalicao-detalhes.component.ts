@@ -43,7 +43,7 @@ export class ListaAvalicaoDetalhesComponent {
 
     this.paramJogoSeq = this.activatedRoute.snapshot.paramMap.get('jogoSeq')
     this.jogoSeq = parseInt(this.paramJogoSeq)
-    this.avalicaoService.obterListaAvaliacaoPorJogo({jogoSeq:this.jogoSeq}).subscribe(data => {
+    this.avalicaoService.avaliacaoControllerObterListaAvaliacaoPorJogo({jogoSeq:this.jogoSeq}).subscribe(data => {
       this.avalicaoListaDataSource.data = data;
     })
 

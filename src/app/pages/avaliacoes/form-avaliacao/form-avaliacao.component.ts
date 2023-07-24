@@ -46,7 +46,7 @@ export class FormAvaliacaoComponent {
       console.log("Codigo", this.codigo)
 
       if (this.codigo != null) {
-        this.jogoService.obterPorId({id: this.codigo}).subscribe(
+        this.jogoService.jogoControllerObterPorId({id: this.codigo}).subscribe(
           retorno => {
             console.log("Retorno", retorno)
             this.formGroup = this.formBuilder.group({
@@ -76,7 +76,7 @@ export class FormAvaliacaoComponent {
 
   onSubmit() {
     console.log("DADOS: ", this.formGroup.value)
-    this.avaliacaoService.incluir1({body:this.formGroup.value}).subscribe(
+    this.avaliacaoService.avaliacaoControllerIncluir({body:this.formGroup.value}).subscribe(
       retorno =>{
         console.log("Funcionou: ", retorno);
         this.confirmarAvaliacao(retorno);

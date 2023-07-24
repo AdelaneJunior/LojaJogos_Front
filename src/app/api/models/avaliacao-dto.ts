@@ -6,5 +6,7 @@ export interface AvaliacaoDto {
   jogoSeq?: number;
   media?: number;
   nomeJogo?: string;
+  nomeUsuario?: string;
   nota?: number;
+  usuaseq?: number;
 }

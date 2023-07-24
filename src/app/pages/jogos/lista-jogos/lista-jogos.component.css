@@ -1,10 +1,10 @@
 .example-container {
-  height: 400px;
+  height: 600px;
   overflow: auto;
 }
 
 table {
-  width: 100%;
+  width: 99%;
 }
 
 .header-cell {
@@ -16,6 +16,7 @@ table {
 .cell{
   color: #650303;
   background: white !important;
+  padding-top: 10px;
 }
 
 .button {
@@ -26,6 +27,12 @@ table {
   font-size: 13px;
 }
 
+.imagem{
+  border-radius: 9px;
+  border-color: #750303;
+  border-style: solid;
+  border-width: 1px;
+}
 td, th {
   text-align: center !important;
   vertical-align: middle !important;

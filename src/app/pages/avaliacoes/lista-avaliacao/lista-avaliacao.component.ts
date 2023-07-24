@@ -41,7 +41,7 @@ export class ListaAvaliacaoComponent implements OnInit {
 
   private buscarDados() {
 
-    this.avalicaoService.obterJogosAvaliadosComMedia().subscribe(data => {
+    this.avalicaoService.avaliacaoControllerObterJogosAvaliadosComMedia().subscribe(data => {
       this.avalicaoListaDataSource.data = data;
     })
 

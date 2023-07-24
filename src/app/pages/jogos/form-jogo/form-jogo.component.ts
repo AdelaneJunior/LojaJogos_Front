@@ -48,7 +48,7 @@ export class FormJogoComponent {
       console.log("Codigo", this.codigo)
 
       if (this.codigo != null) {
-        this.jogoService.obterPorId({id: this.codigo}).subscribe(
+        this.jogoService.jogoControllerObterPorId({id: this.codigo}).subscribe(
           retorno => {
             this.codigo = retorno.codigo;
             this.botao = this.BOTAO_ALTERAR;
@@ -79,7 +79,7 @@ export class FormJogoComponent {
     console.log("Dados: ", this.formGroup.value);
 
     if (this.codigo != null) {
-      this.jogoService.alterar({id: this.codigo, body: this.formGroup.value}).subscribe(
+      this.jogoService.jogoControllerAlterar({id: this.codigo, body:this.formGroup.value,}).subscribe(
         retorno => {
           console.log("alterou:", retorno);
           this.confirmarAlteracao(retorno);
@@ -90,7 +90,7 @@ export class FormJogoComponent {
         }
       )
     } else {
-      this.jogoService.incluir({body: this.formGroup.value}).subscribe(
+      this.jogoService.jogoControllerIncluir({body :this.formGroup.value}).subscribe(
         retorno => {
           console.log("Funcionou:", retorno);
           this.confirmarInclusao(retorno);

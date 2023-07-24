@@ -1,3 +1,4 @@
+export { UsuarioDto } from './models/usuario-dto';
 export { FieldResponse } from './models/field-response';
 export { MessageResponse } from './models/message-response';
 export { JogoDto } from './models/jogo-dto';

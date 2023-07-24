@@ -16,6 +16,7 @@ import {MatInputModule} from "@angular/material/input";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from "@angular/material/core";
+import {MatListModule} from "@angular/material/list";
 
 
 @NgModule({
@@ -24,20 +25,21 @@ import {MatNativeDateModule} from "@angular/material/core";
     ListaJogosComponent,
     FormJogoComponent
   ],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(JogosRoutes),
-    MatCardModule,
-    MatButtonModule,
-    MatIconModule,
-    MatTableModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    MatInputModule,
-    ReactiveFormsModule,
-    MatDatepickerModule,
-    MatNativeDateModule
+    imports: [
+        CommonModule,
+        RouterModule.forChild(JogosRoutes),
+        MatCardModule,
+        MatButtonModule,
+        MatIconModule,
+        MatTableModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatListModule
 
-  ]
+    ]
 })
 export class JogosModule { }

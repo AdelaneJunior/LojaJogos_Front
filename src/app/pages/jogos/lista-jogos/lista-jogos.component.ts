@@ -17,8 +17,9 @@ import {Router} from "@angular/router";
 })
 export class ListaJogosComponent implements OnInit {
 
-  colunasMostrar = ['codigo', 'nomeJogo', 'categoria', 'desenvolvedora', 'dataLancamento', 'valor', 'nota', 'acao'];
+  colunasMostrar = [ 'codigo','caminhoImagem', 'nomeJogo', 'categoria', 'desenvolvedora', 'dataLancamento', 'valor', 'nota', 'acao'];
   jogoListaDataSource: MatTableDataSource<JogoDto> = new MatTableDataSource<JogoDto>([]);
+  listaImagemJogo:MatTableDataSource<JogoDto> = new MatTableDataSource<JogoDto>([]);
 
   constructor(
     public jogoService: JogoControllerService,
@@ -30,18 +31,20 @@ export class ListaJogosComponent implements OnInit {
 
   ngOnInit(): void {
     this.buscarDados();
-
   }
 
   private buscarDados() {
-    this.jogoService.listAll().subscribe(data => {
+    this.jogoService.jogoControllerListAll().subscribe(data => {
       this.jogoListaDataSource.data = data;
+      this.listaImagemJogo.data = data;
+      const jogoDTO = data;
+      console.log(jogoDTO[0]);
     })
   }
 
   excluir(jogoDto: JogoDto) {
     console.log("Removido", jogoDto.codigo);
-    this.jogoService.remover({id: jogoDto.codigo || 0})
+    this.jogoService.jogoControllerRemover({id: jogoDto.codigo || 0})
       .subscribe(retorno => {
           this.buscarDados();
           this.showMensagemSimples("Excluído com sucesso ", 5000);

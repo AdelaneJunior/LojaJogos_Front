@@ -23,26 +23,26 @@ export class JogoControllerService extends BaseService {
   }
 
   /**
-   * Path part for operation obterPorId
+   * Path part for operation jogoControllerObterPorId
    */
-  static readonly ObterPorIdPath = '/api/v1/jogo/{id}';
+  static readonly JogoControllerObterPorIdPath = '/api/v1/jogo/{id}';
 
   /**
    * Obter os dados completos de uma entidiade pelo id informado!
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `obterPorId()` instead.
+   * To access only the response body, use `jogoControllerObterPorId()` instead.
    *
    * This method doesn't expect any request body.
    */
-  obterPorId$Response(params: {
+  jogoControllerObterPorId$Response(params: {
     id: number;
   },
   context?: HttpContext
 
 ): Observable<StrictHttpResponse<any>> {
 
-    const rb = new RequestBuilder(this.rootUrl, JogoControllerService.ObterPorIdPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, JogoControllerService.JogoControllerObterPorIdPath, 'get');
     if (params) {
       rb.path('id', params.id, {});
     }
@@ -63,36 +63,36 @@ export class JogoControllerService extends BaseService {
    * Obter os dados completos de uma entidiade pelo id informado!
    *
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `obterPorId$Response()` instead.
+   * To access the full response (for headers, for example), `jogoControllerObterPorId$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  obterPorId(params: {
+  jogoControllerObterPorId(params: {
     id: number;
   },
   context?: HttpContext
 
 ): Observable<any> {
 
-    return this.obterPorId$Response(params,context).pipe(
+    return this.jogoControllerObterPorId$Response(params,context).pipe(
       map((r: StrictHttpResponse<any>) => r.body as any)
     );
   }
 
   /**
-   * Path part for operation alterar
+   * Path part for operation jogoControllerAlterar
    */
-  static readonly AlterarPath = '/api/v1/jogo/{id}';
+  static readonly JogoControllerAlterarPath = '/api/v1/jogo/{id}';
 
   /**
    * Método utilizado para altlerar os dados de uma entidiade
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `alterar()` instead.
+   * To access only the response body, use `jogoControllerAlterar()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  alterar$Response(params: {
+  jogoControllerAlterar$Response(params: {
     id: number;
     body: JogoDto
   },
@@ -100,7 +100,7 @@ export class JogoControllerService extends BaseService {
 
 ): Observable<StrictHttpResponse<any>> {
 
-    const rb = new RequestBuilder(this.rootUrl, JogoControllerService.AlterarPath, 'put');
+    const rb = new RequestBuilder(this.rootUrl, JogoControllerService.JogoControllerAlterarPath, 'put');
     if (params) {
       rb.path('id', params.id, {});
       rb.body(params.body, 'application/json');
@@ -122,11 +122,11 @@ export class JogoControllerService extends BaseService {
    * Método utilizado para altlerar os dados de uma entidiade
    *
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `alterar$Response()` instead.
+   * To access the full response (for headers, for example), `jogoControllerAlterar$Response()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  alterar(params: {
+  jogoControllerAlterar(params: {
     id: number;
     body: JogoDto
   },
@@ -134,32 +134,32 @@ export class JogoControllerService extends BaseService {
 
 ): Observable<any> {
 
-    return this.alterar$Response(params,context).pipe(
+    return this.jogoControllerAlterar$Response(params,context).pipe(
       map((r: StrictHttpResponse<any>) => r.body as any)
     );
   }
 
   /**
-   * Path part for operation remover
+   * Path part for operation jogoControllerRemover
    */
-  static readonly RemoverPath = '/api/v1/jogo/{id}';
+  static readonly JogoControllerRemoverPath = '/api/v1/jogo/{id}';
 
   /**
    * Método utilizado para remover uma entidiade pela id informado
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `remover()` instead.
+   * To access only the response body, use `jogoControllerRemover()` instead.
    *
    * This method doesn't expect any request body.
    */
-  remover$Response(params: {
+  jogoControllerRemover$Response(params: {
     id: number;
   },
   context?: HttpContext
 
 ): Observable<StrictHttpResponse<any>> {
 
-    const rb = new RequestBuilder(this.rootUrl, JogoControllerService.RemoverPath, 'delete');
+    const rb = new RequestBuilder(this.rootUrl, JogoControllerService.JogoControllerRemoverPath, 'delete');
     if (params) {
       rb.path('id', params.id, {});
     }
@@ -180,42 +180,42 @@ export class JogoControllerService extends BaseService {
    * Método utilizado para remover uma entidiade pela id informado
    *
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `remover$Response()` instead.
+   * To access the full response (for headers, for example), `jogoControllerRemover$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  remover(params: {
+  jogoControllerRemover(params: {
     id: number;
   },
   context?: HttpContext
 
 ): Observable<any> {
 
-    return this.remover$Response(params,context).pipe(
+    return this.jogoControllerRemover$Response(params,context).pipe(
       map((r: StrictHttpResponse<any>) => r.body as any)
     );
   }
 
   /**
-   * Path part for operation listAll
+   * Path part for operation jogoControllerListAll
    */
-  static readonly ListAllPath = '/api/v1/jogo';
+  static readonly JogoControllerListAllPath = '/api/v1/jogo';
 
   /**
    * Listagem Geral
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `listAll()` instead.
+   * To access only the response body, use `jogoControllerListAll()` instead.
    *
    * This method doesn't expect any request body.
    */
-  listAll$Response(params?: {
+  jogoControllerListAll$Response(params?: {
   },
   context?: HttpContext
 
 ): Observable<StrictHttpResponse<any>> {
 
-    const rb = new RequestBuilder(this.rootUrl, JogoControllerService.ListAllPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, JogoControllerService.JogoControllerListAllPath, 'get');
     if (params) {
     }
 
@@ -235,42 +235,42 @@ export class JogoControllerService extends BaseService {
    * Listagem Geral
    *
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `listAll$Response()` instead.
+   * To access the full response (for headers, for example), `jogoControllerListAll$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  listAll(params?: {
+  jogoControllerListAll(params?: {
   },
   context?: HttpContext
 
 ): Observable<any> {
 
-    return this.listAll$Response(params,context).pipe(
+    return this.jogoControllerListAll$Response(params,context).pipe(
       map((r: StrictHttpResponse<any>) => r.body as any)
     );
   }
 
   /**
-   * Path part for operation incluir
+   * Path part for operation jogoControllerIncluir
    */
-  static readonly IncluirPath = '/api/v1/jogo';
+  static readonly JogoControllerIncluirPath = '/api/v1/jogo';
 
   /**
    * Método utilizado para realizar a inclusão de um entidade
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `incluir()` instead.
+   * To access only the response body, use `jogoControllerIncluir()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  incluir$Response(params: {
+  jogoControllerIncluir$Response(params: {
     body: JogoDto
   },
   context?: HttpContext
 
 ): Observable<StrictHttpResponse<any>> {
 
-    const rb = new RequestBuilder(this.rootUrl, JogoControllerService.IncluirPath, 'post');
+    const rb = new RequestBuilder(this.rootUrl, JogoControllerService.JogoControllerIncluirPath, 'post');
     if (params) {
       rb.body(params.body, 'application/json');
     }
@@ -291,18 +291,18 @@ export class JogoControllerService extends BaseService {
    * Método utilizado para realizar a inclusão de um entidade
    *
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `incluir$Response()` instead.
+   * To access the full response (for headers, for example), `jogoControllerIncluir$Response()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  incluir(params: {
+  jogoControllerIncluir(params: {
     body: JogoDto
   },
   context?: HttpContext
 
 ): Observable<any> {
 
-    return this.incluir$Response(params,context).pipe(
+    return this.jogoControllerIncluir$Response(params,context).pipe(
       map((r: StrictHttpResponse<any>) => r.body as any)
     );
   }

@@ -27,7 +27,7 @@ mat-sidenav {
 mat-sidenav-container {
   padding-top: 10px;
   height: calc(100vh - 65px);
-  background-image: url("images/chamas-background.jpg");
+  background-image: url("src/assets/chamas-background.jpg");
   background-size: cover;
   background-position: center;
 }

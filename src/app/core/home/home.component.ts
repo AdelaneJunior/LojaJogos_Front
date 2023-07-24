@@ -5,6 +5,7 @@ import { delay, filter } from 'rxjs/operators';
 import { NavigationEnd, Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import {SecurityService} from "../../arquitetura/security/security.service";
+import {MessageService} from "../../arquitetura/message/message.service";
 
 @UntilDestroy()
 @Component({
@@ -20,8 +21,17 @@ export class HomeComponent {
   constructor(
     private observer: BreakpointObserver,
     private router: Router,
+    private mensageService: MessageService,
     private securityService: SecurityService) {
 
+  }
+
+  ngOnInit(): void {
+    if (this.securityService.credential.login !== 'admin') {
+      this.router.navigate(['/']);
+    }
+    if (!this.securityService.isValid())
+      this.router.navigate(['/acesso']);
   }
 
   ngAfterViewInit() {
@@ -52,7 +62,6 @@ export class HomeComponent {
 
   sair() {
     this.securityService.invalidate();
-    this.router.navigate(['/acesso']);
+    this.router.navigate(['/login']);
   }
-
 }

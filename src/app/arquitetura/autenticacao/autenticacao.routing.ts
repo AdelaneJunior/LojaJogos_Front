@@ -13,5 +13,7 @@ export const AutenticacaoRoutes: Routes = [
         component: AutenticacaoComponent,
         //loadChildren: () => import('./autenticacao.module').then(m => m.AutenticacaoModule)
       },
+
+
   ];
 

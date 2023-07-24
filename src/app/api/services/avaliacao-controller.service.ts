@@ -23,311 +23,295 @@ export class AvaliacaoControllerService extends BaseService {
   }
 
   /**
-   * Path part for operation obterPorId1
+   * Path part for operation avaliacaoControllerObterPorId
    */
-  static readonly ObterPorId1Path = '/api/v1/avaliacao/{id}';
+  static readonly AvaliacaoControllerObterPorIdPath = '/api/v1/avaliacao/{id}';
 
   /**
    * Obter os dados completos de uma entidiade pelo id informado!
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `obterPorId1()` instead.
+   * To access only the response body, use `avaliacaoControllerObterPorId()` instead.
    *
    * This method doesn't expect any request body.
    */
-  obterPorId1$Response(params: {
+  avaliacaoControllerObterPorId$Response(params: {
     id: number;
   },
   context?: HttpContext
 
 ): Observable<StrictHttpResponse<any>> {
 
-    const rb = new RequestBuilder(this.rootUrl, AvaliacaoControllerService.ObterPorId1Path, 'get');
+    const rb = new RequestBuilder(this.rootUrl, AvaliacaoControllerService.AvaliacaoControllerObterPorIdPath, 'get');
+    if (params) {
+      rb.path('id', params.id, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'application/json',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<any>;
+      })
+    );
+  }
+
+  /**
+   * Obter os dados completos de uma entidiade pelo id informado!
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `avaliacaoControllerObterPorId$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  avaliacaoControllerObterPorId(params: {
+    id: number;
+  },
+  context?: HttpContext
+
+): Observable<any> {
+
+    return this.avaliacaoControllerObterPorId$Response(params,context).pipe(
+      map((r: StrictHttpResponse<any>) => r.body as any)
+    );
+  }
+
+  /**
+   * Path part for operation avaliacaoControllerAlterar
+   */
+  static readonly AvaliacaoControllerAlterarPath = '/api/v1/avaliacao/{id}';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `avaliacaoControllerAlterar()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  avaliacaoControllerAlterar$Response(params: {
+    modeloDTO: AvaliacaoDto;
+    id: number;
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<AvaliacaoDto>> {
+
+    const rb = new RequestBuilder(this.rootUrl, AvaliacaoControllerService.AvaliacaoControllerAlterarPath, 'put');
+    if (params) {
+      rb.query('modeloDTO', params.modeloDTO, {});
+      rb.query('id', params.id, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'blob',
+      accept: '*/*',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<AvaliacaoDto>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `avaliacaoControllerAlterar$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  avaliacaoControllerAlterar(params: {
+    modeloDTO: AvaliacaoDto;
+    id: number;
+  },
+  context?: HttpContext
+
+): Observable<AvaliacaoDto> {
+
+    return this.avaliacaoControllerAlterar$Response(params,context).pipe(
+      map((r: StrictHttpResponse<AvaliacaoDto>) => r.body as AvaliacaoDto)
+    );
+  }
+
+  /**
+   * Path part for operation avaliacaoControllerRemover
+   */
+  static readonly AvaliacaoControllerRemoverPath = '/api/v1/avaliacao/{id}';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `avaliacaoControllerRemover()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  avaliacaoControllerRemover$Response(params: {
+    id: number;
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<AvaliacaoDto>> {
+
+    const rb = new RequestBuilder(this.rootUrl, AvaliacaoControllerService.AvaliacaoControllerRemoverPath, 'delete');
     if (params) {
       rb.query('id', params.id, {});
     }
 
     return this.http.request(rb.build({
-      responseType: 'json',
-      accept: 'application/json',
+      responseType: 'blob',
+      accept: '*/*',
       context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<any>;
+        return r as StrictHttpResponse<AvaliacaoDto>;
       })
     );
   }
 
   /**
-   * Obter os dados completos de uma entidiade pelo id informado!
-   *
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `obterPorId1$Response()` instead.
+   * To access the full response (for headers, for example), `avaliacaoControllerRemover$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  obterPorId1(params: {
+  avaliacaoControllerRemover(params: {
     id: number;
   },
   context?: HttpContext
 
-): Observable<any> {
+): Observable<AvaliacaoDto> {
 
-    return this.obterPorId1$Response(params,context).pipe(
-      map((r: StrictHttpResponse<any>) => r.body as any)
+    return this.avaliacaoControllerRemover$Response(params,context).pipe(
+      map((r: StrictHttpResponse<AvaliacaoDto>) => r.body as AvaliacaoDto)
     );
   }
 
   /**
-   * Path part for operation alterar1
+   * Path part for operation avaliacaoControllerListAll
    */
-  static readonly Alterar1Path = '/api/v1/avaliacao/{id}';
+  static readonly AvaliacaoControllerListAllPath = '/api/v1/avaliacao';
 
   /**
-   * Método utilizado para altlerar os dados de uma entidiade
-   *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `alterar1()` instead.
-   *
-   * This method sends `application/json` and handles request body of type `application/json`.
-   */
-  alterar1$Response(params: {
-    id: number;
-    body: AvaliacaoDto
-  },
-  context?: HttpContext
-
-): Observable<StrictHttpResponse<any>> {
-
-    const rb = new RequestBuilder(this.rootUrl, AvaliacaoControllerService.Alterar1Path, 'put');
-    if (params) {
-      rb.path('id', params.id, {});
-      rb.body(params.body, 'application/json');
-    }
-
-    return this.http.request(rb.build({
-      responseType: 'json',
-      accept: 'application/json',
-      context: context
-    })).pipe(
-      filter((r: any) => r instanceof HttpResponse),
-      map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<any>;
-      })
-    );
-  }
-
-  /**
-   * Método utilizado para altlerar os dados de uma entidiade
-   *
-   * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `alterar1$Response()` instead.
-   *
-   * This method sends `application/json` and handles request body of type `application/json`.
-   */
-  alterar1(params: {
-    id: number;
-    body: AvaliacaoDto
-  },
-  context?: HttpContext
-
-): Observable<any> {
-
-    return this.alterar1$Response(params,context).pipe(
-      map((r: StrictHttpResponse<any>) => r.body as any)
-    );
-  }
-
-  /**
-   * Path part for operation remover1
-   */
-  static readonly Remover1Path = '/api/v1/avaliacao/{id}';
-
-  /**
-   * Método utilizado para remover uma entidiade pela id informado
-   *
-   * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `remover1()` instead.
+   * To access only the response body, use `avaliacaoControllerListAll()` instead.
    *
    * This method doesn't expect any request body.
    */
-  remover1$Response(params: {
-    id: number;
+  avaliacaoControllerListAll$Response(params?: {
   },
   context?: HttpContext
 
-): Observable<StrictHttpResponse<any>> {
+): Observable<StrictHttpResponse<Array<AvaliacaoDto>>> {
 
-    const rb = new RequestBuilder(this.rootUrl, AvaliacaoControllerService.Remover1Path, 'delete');
-    if (params) {
-      rb.path('id', params.id, {});
-    }
-
-    return this.http.request(rb.build({
-      responseType: 'json',
-      accept: 'application/json',
-      context: context
-    })).pipe(
-      filter((r: any) => r instanceof HttpResponse),
-      map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<any>;
-      })
-    );
-  }
-
-  /**
-   * Método utilizado para remover uma entidiade pela id informado
-   *
-   * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `remover1$Response()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  remover1(params: {
-    id: number;
-  },
-  context?: HttpContext
-
-): Observable<any> {
-
-    return this.remover1$Response(params,context).pipe(
-      map((r: StrictHttpResponse<any>) => r.body as any)
-    );
-  }
-
-  /**
-   * Path part for operation listAll1
-   */
-  static readonly ListAll1Path = '/api/v1/avaliacao';
-
-  /**
-   * Listagem Geral
-   *
-   * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `listAll1()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  listAll1$Response(params?: {
-  },
-  context?: HttpContext
-
-): Observable<StrictHttpResponse<any>> {
-
-    const rb = new RequestBuilder(this.rootUrl, AvaliacaoControllerService.ListAll1Path, 'get');
+    const rb = new RequestBuilder(this.rootUrl, AvaliacaoControllerService.AvaliacaoControllerListAllPath, 'get');
     if (params) {
     }
 
     return this.http.request(rb.build({
-      responseType: 'json',
-      accept: 'application/json',
+      responseType: 'blob',
+      accept: '*/*',
       context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<any>;
+        return r as StrictHttpResponse<Array<AvaliacaoDto>>;
       })
     );
   }
 
   /**
-   * Listagem Geral
-   *
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `listAll1$Response()` instead.
+   * To access the full response (for headers, for example), `avaliacaoControllerListAll$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  listAll1(params?: {
+  avaliacaoControllerListAll(params?: {
   },
   context?: HttpContext
 
-): Observable<any> {
+): Observable<Array<AvaliacaoDto>> {
 
-    return this.listAll1$Response(params,context).pipe(
-      map((r: StrictHttpResponse<any>) => r.body as any)
+    return this.avaliacaoControllerListAll$Response(params,context).pipe(
+      map((r: StrictHttpResponse<Array<AvaliacaoDto>>) => r.body as Array<AvaliacaoDto>)
     );
   }
 
   /**
-   * Path part for operation incluir1
+   * Path part for operation avaliacaoControllerIncluir
    */
-  static readonly Incluir1Path = '/api/v1/avaliacao';
+  static readonly AvaliacaoControllerIncluirPath = '/api/v1/avaliacao';
 
   /**
-   * Método utilizado para realizar a inclusão de um entidade
-   *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `incluir1()` instead.
+   * To access only the response body, use `avaliacaoControllerIncluir()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  incluir1$Response(params: {
+  avaliacaoControllerIncluir$Response(params: {
     body: AvaliacaoDto
   },
   context?: HttpContext
 
-): Observable<StrictHttpResponse<any>> {
+): Observable<StrictHttpResponse<AvaliacaoDto>> {
 
-    const rb = new RequestBuilder(this.rootUrl, AvaliacaoControllerService.Incluir1Path, 'post');
+    const rb = new RequestBuilder(this.rootUrl, AvaliacaoControllerService.AvaliacaoControllerIncluirPath, 'post');
     if (params) {
       rb.body(params.body, 'application/json');
     }
 
     return this.http.request(rb.build({
-      responseType: 'json',
-      accept: 'application/json',
+      responseType: 'blob',
+      accept: '*/*',
       context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<any>;
+        return r as StrictHttpResponse<AvaliacaoDto>;
       })
     );
   }
 
   /**
-   * Método utilizado para realizar a inclusão de um entidade
-   *
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `incluir1$Response()` instead.
+   * To access the full response (for headers, for example), `avaliacaoControllerIncluir$Response()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  incluir1(params: {
+  avaliacaoControllerIncluir(params: {
     body: AvaliacaoDto
   },
   context?: HttpContext
 
-): Observable<any> {
+): Observable<AvaliacaoDto> {
 
-    return this.incluir1$Response(params,context).pipe(
-      map((r: StrictHttpResponse<any>) => r.body as any)
+    return this.avaliacaoControllerIncluir$Response(params,context).pipe(
+      map((r: StrictHttpResponse<AvaliacaoDto>) => r.body as AvaliacaoDto)
     );
   }
 
   /**
-   * Path part for operation quantidadeAvaliacoesJogo
+   * Path part for operation avaliacaoControllerQuantidadeAvaliacoesJogo
    */
-  static readonly QuantidadeAvaliacoesJogoPath = '/api/v1/avaliacao/api/v1/avaliacao/qtdAvaliacoesJogo';
+  static readonly AvaliacaoControllerQuantidadeAvaliacoesJogoPath = '/api/v1/avaliacao/api/v1/avaliacao/qtdAvaliacoesJogo';
 
   /**
    * Quantidade de Avaliações por Jogo
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `quantidadeAvaliacoesJogo()` instead.
+   * To access only the response body, use `avaliacaoControllerQuantidadeAvaliacoesJogo()` instead.
    *
    * This method doesn't expect any request body.
    */
-  quantidadeAvaliacoesJogo$Response(params: {
+  avaliacaoControllerQuantidadeAvaliacoesJogo$Response(params: {
     jogoSeq: number;
   },
   context?: HttpContext
 
 ): Observable<StrictHttpResponse<any>> {
 
-    const rb = new RequestBuilder(this.rootUrl, AvaliacaoControllerService.QuantidadeAvaliacoesJogoPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, AvaliacaoControllerService.AvaliacaoControllerQuantidadeAvaliacoesJogoPath, 'get');
     if (params) {
       rb.query('jogoSeq', params.jogoSeq, {});
     }
@@ -348,43 +332,43 @@ export class AvaliacaoControllerService extends BaseService {
    * Quantidade de Avaliações por Jogo
    *
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `quantidadeAvaliacoesJogo$Response()` instead.
+   * To access the full response (for headers, for example), `avaliacaoControllerQuantidadeAvaliacoesJogo$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  quantidadeAvaliacoesJogo(params: {
+  avaliacaoControllerQuantidadeAvaliacoesJogo(params: {
     jogoSeq: number;
   },
   context?: HttpContext
 
 ): Observable<any> {
 
-    return this.quantidadeAvaliacoesJogo$Response(params,context).pipe(
+    return this.avaliacaoControllerQuantidadeAvaliacoesJogo$Response(params,context).pipe(
       map((r: StrictHttpResponse<any>) => r.body as any)
     );
   }
 
   /**
-   * Path part for operation obterMediaJogo
+   * Path part for operation avaliacaoControllerObterMediaJogo
    */
-  static readonly ObterMediaJogoPath = '/api/v1/avaliacao/api/v1/avaliacao/mediajogo';
+  static readonly AvaliacaoControllerObterMediaJogoPath = '/api/v1/avaliacao/api/v1/avaliacao/mediajogo';
 
   /**
    * Media geral do Jogo
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `obterMediaJogo()` instead.
+   * To access only the response body, use `avaliacaoControllerObterMediaJogo()` instead.
    *
    * This method doesn't expect any request body.
    */
-  obterMediaJogo$Response(params: {
+  avaliacaoControllerObterMediaJogo$Response(params: {
     jogoSeq: number;
   },
   context?: HttpContext
 
 ): Observable<StrictHttpResponse<any>> {
 
-    const rb = new RequestBuilder(this.rootUrl, AvaliacaoControllerService.ObterMediaJogoPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, AvaliacaoControllerService.AvaliacaoControllerObterMediaJogoPath, 'get');
     if (params) {
       rb.query('jogoSeq', params.jogoSeq, {});
     }
@@ -405,42 +389,42 @@ export class AvaliacaoControllerService extends BaseService {
    * Media geral do Jogo
    *
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `obterMediaJogo$Response()` instead.
+   * To access the full response (for headers, for example), `avaliacaoControllerObterMediaJogo$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  obterMediaJogo(params: {
+  avaliacaoControllerObterMediaJogo(params: {
     jogoSeq: number;
   },
   context?: HttpContext
 
 ): Observable<any> {
 
-    return this.obterMediaJogo$Response(params,context).pipe(
+    return this.avaliacaoControllerObterMediaJogo$Response(params,context).pipe(
       map((r: StrictHttpResponse<any>) => r.body as any)
     );
   }
 
   /**
-   * Path part for operation obterJogosAvaliados
+   * Path part for operation avaliacaoControllerObterJogosAvaliados
    */
-  static readonly ObterJogosAvaliadosPath = '/api/v1/avaliacao/api/v1/avaliacao/jogosAvaliados';
+  static readonly AvaliacaoControllerObterJogosAvaliadosPath = '/api/v1/avaliacao/api/v1/avaliacao/jogosAvaliados';
 
   /**
    * Listagem de Jogos Avaliados
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `obterJogosAvaliados()` instead.
+   * To access only the response body, use `avaliacaoControllerObterJogosAvaliados()` instead.
    *
    * This method doesn't expect any request body.
    */
-  obterJogosAvaliados$Response(params?: {
+  avaliacaoControllerObterJogosAvaliados$Response(params?: {
   },
   context?: HttpContext
 
 ): Observable<StrictHttpResponse<any>> {
 
-    const rb = new RequestBuilder(this.rootUrl, AvaliacaoControllerService.ObterJogosAvaliadosPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, AvaliacaoControllerService.AvaliacaoControllerObterJogosAvaliadosPath, 'get');
     if (params) {
     }
 
@@ -460,41 +444,41 @@ export class AvaliacaoControllerService extends BaseService {
    * Listagem de Jogos Avaliados
    *
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `obterJogosAvaliados$Response()` instead.
+   * To access the full response (for headers, for example), `avaliacaoControllerObterJogosAvaliados$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  obterJogosAvaliados(params?: {
+  avaliacaoControllerObterJogosAvaliados(params?: {
   },
   context?: HttpContext
 
 ): Observable<any> {
 
-    return this.obterJogosAvaliados$Response(params,context).pipe(
+    return this.avaliacaoControllerObterJogosAvaliados$Response(params,context).pipe(
       map((r: StrictHttpResponse<any>) => r.body as any)
     );
   }
 
   /**
-   * Path part for operation obterJogosAvaliadosComMedia
+   * Path part for operation avaliacaoControllerObterJogosAvaliadosComMedia
    */
-  static readonly ObterJogosAvaliadosComMediaPath = '/api/v1/avaliacao/api/v1/avaliacao/jogosAvaliadosMedia';
+  static readonly AvaliacaoControllerObterJogosAvaliadosComMediaPath = '/api/v1/avaliacao/api/v1/avaliacao/jogosAvaliadosMedia';
 
   /**
    * Listagem de Jogos Avaliados com media
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `obterJogosAvaliadosComMedia()` instead.
+   * To access only the response body, use `avaliacaoControllerObterJogosAvaliadosComMedia()` instead.
    *
    * This method doesn't expect any request body.
    */
-  obterJogosAvaliadosComMedia$Response(params?: {
+  avaliacaoControllerObterJogosAvaliadosComMedia$Response(params?: {
   },
   context?: HttpContext
 
 ): Observable<StrictHttpResponse<any>> {
 
-    const rb = new RequestBuilder(this.rootUrl, AvaliacaoControllerService.ObterJogosAvaliadosComMediaPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, AvaliacaoControllerService.AvaliacaoControllerObterJogosAvaliadosComMediaPath, 'get');
     if (params) {
     }
 
@@ -514,42 +498,99 @@ export class AvaliacaoControllerService extends BaseService {
    * Listagem de Jogos Avaliados com media
    *
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `obterJogosAvaliadosComMedia$Response()` instead.
+   * To access the full response (for headers, for example), `avaliacaoControllerObterJogosAvaliadosComMedia$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  obterJogosAvaliadosComMedia(params?: {
+  avaliacaoControllerObterJogosAvaliadosComMedia(params?: {
   },
   context?: HttpContext
 
 ): Observable<any> {
 
-    return this.obterJogosAvaliadosComMedia$Response(params,context).pipe(
+    return this.avaliacaoControllerObterJogosAvaliadosComMedia$Response(params,context).pipe(
       map((r: StrictHttpResponse<any>) => r.body as any)
     );
   }
 
   /**
-   * Path part for operation obterListaAvaliacaoPorJogo
+   * Path part for operation avaliacaoControllerObterListaAvaliacoesPorUsuario
    */
-  static readonly ObterListaAvaliacaoPorJogoPath = '/api/v1/avaliacao/api/v1/avaliacao/avaliacoesJogo';
+  static readonly AvaliacaoControllerObterListaAvaliacoesPorUsuarioPath = '/api/v1/avaliacao/api/v1/avaliacao/avaliacoesUser';
+
+  /**
+   * Listagem das Avaliações por Usuario
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `avaliacaoControllerObterListaAvaliacoesPorUsuario()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  avaliacaoControllerObterListaAvaliacoesPorUsuario$Response(params: {
+    userSeq: number;
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<any>> {
+
+    const rb = new RequestBuilder(this.rootUrl, AvaliacaoControllerService.AvaliacaoControllerObterListaAvaliacoesPorUsuarioPath, 'get');
+    if (params) {
+      rb.query('userSeq', params.userSeq, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'application/json',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<any>;
+      })
+    );
+  }
+
+  /**
+   * Listagem das Avaliações por Usuario
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `avaliacaoControllerObterListaAvaliacoesPorUsuario$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  avaliacaoControllerObterListaAvaliacoesPorUsuario(params: {
+    userSeq: number;
+  },
+  context?: HttpContext
+
+): Observable<any> {
+
+    return this.avaliacaoControllerObterListaAvaliacoesPorUsuario$Response(params,context).pipe(
+      map((r: StrictHttpResponse<any>) => r.body as any)
+    );
+  }
+
+  /**
+   * Path part for operation avaliacaoControllerObterListaAvaliacaoPorJogo
+   */
+  static readonly AvaliacaoControllerObterListaAvaliacaoPorJogoPath = '/api/v1/avaliacao/api/v1/avaliacao/avaliacoesJogo';
 
   /**
    * Listagem das Avaliações por Jogo
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `obterListaAvaliacaoPorJogo()` instead.
+   * To access only the response body, use `avaliacaoControllerObterListaAvaliacaoPorJogo()` instead.
    *
    * This method doesn't expect any request body.
    */
-  obterListaAvaliacaoPorJogo$Response(params: {
+  avaliacaoControllerObterListaAvaliacaoPorJogo$Response(params: {
     jogoSeq: number;
   },
   context?: HttpContext
 
 ): Observable<StrictHttpResponse<any>> {
 
-    const rb = new RequestBuilder(this.rootUrl, AvaliacaoControllerService.ObterListaAvaliacaoPorJogoPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, AvaliacaoControllerService.AvaliacaoControllerObterListaAvaliacaoPorJogoPath, 'get');
     if (params) {
       rb.query('jogoSeq', params.jogoSeq, {});
     }
@@ -570,18 +611,18 @@ export class AvaliacaoControllerService extends BaseService {
    * Listagem das Avaliações por Jogo
    *
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `obterListaAvaliacaoPorJogo$Response()` instead.
+   * To access the full response (for headers, for example), `avaliacaoControllerObterListaAvaliacaoPorJogo$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  obterListaAvaliacaoPorJogo(params: {
+  avaliacaoControllerObterListaAvaliacaoPorJogo(params: {
     jogoSeq: number;
   },
   context?: HttpContext
 
 ): Observable<any> {
 
-    return this.obterListaAvaliacaoPorJogo$Response(params,context).pipe(
+    return this.avaliacaoControllerObterListaAvaliacaoPorJogo$Response(params,context).pipe(
       map((r: StrictHttpResponse<any>) => r.body as any)
     );
   }
