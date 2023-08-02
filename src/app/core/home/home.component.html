@@ -29,7 +29,8 @@
       <mat-icon>view_list</mat-icon>
       <span>Lista de Jogos</span>
     </button>
-    <button mat-button class="menu-button" routerLink="/jogos/novo">
+
+    <button mat-button class="menu-button" routerLink="/jogos/novo" [hidden]=admin>
       <mat-icon>library_add</mat-icon>
       <span>Adicionar Jogo</span>
     </button>

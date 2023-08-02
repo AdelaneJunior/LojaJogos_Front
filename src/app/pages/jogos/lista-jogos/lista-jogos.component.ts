@@ -9,6 +9,7 @@ import {
 import {MatDialog} from "@angular/material/dialog";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Router} from "@angular/router";
+import {SecurityService} from "../../../arquitetura/security/security.service";
 
 @Component({
   selector: 'app-lista-jogos',
@@ -20,8 +21,10 @@ export class ListaJogosComponent implements OnInit {
   colunasMostrar = [ 'codigo','caminhoImagem', 'nomeJogo', 'categoria', 'desenvolvedora', 'dataLancamento', 'valor', 'nota', 'acao'];
   jogoListaDataSource: MatTableDataSource<JogoDto> = new MatTableDataSource<JogoDto>([]);
   listaImagemJogo:MatTableDataSource<JogoDto> = new MatTableDataSource<JogoDto>([]);
+  admin:boolean = false;
 
   constructor(
+    public securityService:SecurityService,
     public jogoService: JogoControllerService,
     private dialog: MatDialog,
     private snackBar: MatSnackBar,
@@ -30,6 +33,7 @@ export class ListaJogosComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.admin = !this.securityService.hasRoles(['ROLE_ADMIN']);
     this.buscarDados();
   }
 

@@ -48,10 +48,10 @@
     <ng-container matColumnDef="acao">
       <th mat-header-cell class="header-cell" *matHeaderCellDef>Ações</th>
       <td mat-cell class="cell" *matCellDef="let element">
-        <button mat-icon-button (click)="confirmarExcluir(element)" class="button">
+        <button mat-icon-button (click)="confirmarExcluir(element)" class="button" [hidden]="admin">
           <mat-icon>cancel</mat-icon>
         </button>
-        <button mat-icon-button [routerLink]="['/jogos',element.codigo]" >
+        <button mat-icon-button [routerLink]="['/jogos',element.codigo]"  [hidden]="admin">
           <mat-icon>edit</mat-icon>
         </button>
         <button mat-icon-button [routerLink]="['/avaliacao/nova',element.codigo]" >

@@ -5,7 +5,7 @@ export interface UsuarioDto {
   email?: string;
   login?: string;
   nome?: string;
-  roles?: Array<string>;
+  role?: string;
   senha?: string;
   status?: boolean;
 }

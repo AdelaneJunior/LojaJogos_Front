@@ -17,7 +17,7 @@ export class ListaAvalicaoDetalhesComponent {
 
   jogoSeq!:number
   paramJogoSeq:any
-  displayedColumns: string[] = ['nomeJogo', 'nota', 'detalhes'];
+  displayedColumns: string[] = ['nomeJogo', 'nota', 'nomeUsuario', 'descricao'];
   avalicaoListaDataSource: MatTableDataSource<AvaliacaoDto> = new MatTableDataSource<AvaliacaoDto>([]);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;

@@ -11,7 +11,7 @@
         <mat-icon>home</mat-icon>
         <span>Inicio</span>
       </button>
-      <button mat-raised-button routerLink="/jogos/novo" class="button">
+      <button mat-raised-button routerLink="/jogos/novo" class="button" [hidden]="admin">
         <mat-icon>add</mat-icon>
         <span>Adcionar Jogo</span>
       </button>

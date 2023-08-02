@@ -14,3 +14,9 @@
 .example-button-row .mat-mdc-button-base {
   margin: 8px 8px 8px 0;
 }
+
+mat-card {
+  transition: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}

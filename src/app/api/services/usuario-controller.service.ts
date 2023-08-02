@@ -28,6 +28,8 @@ export class UsuarioControllerService extends BaseService {
   static readonly UsuarioControllerObterPorIdPath = '/api/v1/usuario/{id}';
 
   /**
+   * Obter os dados completos de uma entidiade pelo id informado!
+   *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `usuarioControllerObterPorId()` instead.
    *
@@ -38,26 +40,28 @@ export class UsuarioControllerService extends BaseService {
   },
   context?: HttpContext
 
-): Observable<StrictHttpResponse<UsuarioDto>> {
+): Observable<StrictHttpResponse<any>> {
 
     const rb = new RequestBuilder(this.rootUrl, UsuarioControllerService.UsuarioControllerObterPorIdPath, 'get');
     if (params) {
-      rb.query('id', params.id, {});
+      rb.path('id', params.id, {});
     }
 
     return this.http.request(rb.build({
-      responseType: 'blob',
-      accept: '*/*',
+      responseType: 'json',
+      accept: 'application/json',
       context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<UsuarioDto>;
+        return r as StrictHttpResponse<any>;
       })
     );
   }
 
   /**
+   * Obter os dados completos de uma entidiade pelo id informado!
+   *
    * This method provides access only to the response body.
    * To access the full response (for headers, for example), `usuarioControllerObterPorId$Response()` instead.
    *
@@ -68,10 +72,10 @@ export class UsuarioControllerService extends BaseService {
   },
   context?: HttpContext
 
-): Observable<UsuarioDto> {
+): Observable<any> {
 
     return this.usuarioControllerObterPorId$Response(params,context).pipe(
-      map((r: StrictHttpResponse<UsuarioDto>) => r.body as UsuarioDto)
+      map((r: StrictHttpResponse<any>) => r.body as any)
     );
   }
 
@@ -81,53 +85,57 @@ export class UsuarioControllerService extends BaseService {
   static readonly UsuarioControllerAlterarPath = '/api/v1/usuario/{id}';
 
   /**
+   * Método utilizado para altlerar os dados de uma entidiade
+   *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `usuarioControllerAlterar()` instead.
    *
-   * This method doesn't expect any request body.
+   * This method sends `application/json` and handles request body of type `application/json`.
    */
   usuarioControllerAlterar$Response(params: {
-    modeloDTO: UsuarioDto;
     id: number;
+    body: UsuarioDto
   },
   context?: HttpContext
 
-): Observable<StrictHttpResponse<UsuarioDto>> {
+): Observable<StrictHttpResponse<any>> {
 
     const rb = new RequestBuilder(this.rootUrl, UsuarioControllerService.UsuarioControllerAlterarPath, 'put');
     if (params) {
-      rb.query('modeloDTO', params.modeloDTO, {});
-      rb.query('id', params.id, {});
+      rb.path('id', params.id, {});
+      rb.body(params.body, 'application/json');
     }
 
     return this.http.request(rb.build({
-      responseType: 'blob',
-      accept: '*/*',
+      responseType: 'json',
+      accept: 'application/json',
       context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<UsuarioDto>;
+        return r as StrictHttpResponse<any>;
       })
     );
   }
 
   /**
+   * Método utilizado para altlerar os dados de uma entidiade
+   *
    * This method provides access only to the response body.
    * To access the full response (for headers, for example), `usuarioControllerAlterar$Response()` instead.
    *
-   * This method doesn't expect any request body.
+   * This method sends `application/json` and handles request body of type `application/json`.
    */
   usuarioControllerAlterar(params: {
-    modeloDTO: UsuarioDto;
     id: number;
+    body: UsuarioDto
   },
   context?: HttpContext
 
-): Observable<UsuarioDto> {
+): Observable<any> {
 
     return this.usuarioControllerAlterar$Response(params,context).pipe(
-      map((r: StrictHttpResponse<UsuarioDto>) => r.body as UsuarioDto)
+      map((r: StrictHttpResponse<any>) => r.body as any)
     );
   }
 
@@ -137,6 +145,8 @@ export class UsuarioControllerService extends BaseService {
   static readonly UsuarioControllerRemoverPath = '/api/v1/usuario/{id}';
 
   /**
+   * Método utilizado para remover uma entidiade pela id informado
+   *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `usuarioControllerRemover()` instead.
    *
@@ -147,26 +157,28 @@ export class UsuarioControllerService extends BaseService {
   },
   context?: HttpContext
 
-): Observable<StrictHttpResponse<UsuarioDto>> {
+): Observable<StrictHttpResponse<any>> {
 
     const rb = new RequestBuilder(this.rootUrl, UsuarioControllerService.UsuarioControllerRemoverPath, 'delete');
     if (params) {
-      rb.query('id', params.id, {});
+      rb.path('id', params.id, {});
     }
 
     return this.http.request(rb.build({
-      responseType: 'blob',
-      accept: '*/*',
+      responseType: 'json',
+      accept: 'application/json',
       context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<UsuarioDto>;
+        return r as StrictHttpResponse<any>;
       })
     );
   }
 
   /**
+   * Método utilizado para remover uma entidiade pela id informado
+   *
    * This method provides access only to the response body.
    * To access the full response (for headers, for example), `usuarioControllerRemover$Response()` instead.
    *
@@ -177,69 +189,21 @@ export class UsuarioControllerService extends BaseService {
   },
   context?: HttpContext
 
-): Observable<UsuarioDto> {
+): Observable<any> {
 
     return this.usuarioControllerRemover$Response(params,context).pipe(
-      map((r: StrictHttpResponse<UsuarioDto>) => r.body as UsuarioDto)
-    );
-  }
-
-  /**
-   * Path part for operation usuarioControllerListAll
-   */
-  static readonly UsuarioControllerListAllPath = '/api/v1/usuario';
-
-  /**
-   * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `usuarioControllerListAll()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  usuarioControllerListAll$Response(params?: {
-  },
-  context?: HttpContext
-
-): Observable<StrictHttpResponse<Array<UsuarioDto>>> {
-
-    const rb = new RequestBuilder(this.rootUrl, UsuarioControllerService.UsuarioControllerListAllPath, 'get');
-    if (params) {
-    }
-
-    return this.http.request(rb.build({
-      responseType: 'blob',
-      accept: '*/*',
-      context: context
-    })).pipe(
-      filter((r: any) => r instanceof HttpResponse),
-      map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<Array<UsuarioDto>>;
-      })
-    );
-  }
-
-  /**
-   * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `usuarioControllerListAll$Response()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  usuarioControllerListAll(params?: {
-  },
-  context?: HttpContext
-
-): Observable<Array<UsuarioDto>> {
-
-    return this.usuarioControllerListAll$Response(params,context).pipe(
-      map((r: StrictHttpResponse<Array<UsuarioDto>>) => r.body as Array<UsuarioDto>)
+      map((r: StrictHttpResponse<any>) => r.body as any)
     );
   }
 
   /**
    * Path part for operation usuarioControllerIncluir
    */
-  static readonly UsuarioControllerIncluirPath = '/api/v1/usuario';
+  static readonly UsuarioControllerIncluirPath = '/api/v1/usuario/singup';
 
   /**
+   * Método utilizado para realizar a inclusão de um entidade
+   *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `usuarioControllerIncluir()` instead.
    *
@@ -250,7 +214,7 @@ export class UsuarioControllerService extends BaseService {
   },
   context?: HttpContext
 
-): Observable<StrictHttpResponse<UsuarioDto>> {
+): Observable<StrictHttpResponse<any>> {
 
     const rb = new RequestBuilder(this.rootUrl, UsuarioControllerService.UsuarioControllerIncluirPath, 'post');
     if (params) {
@@ -258,18 +222,20 @@ export class UsuarioControllerService extends BaseService {
     }
 
     return this.http.request(rb.build({
-      responseType: 'blob',
-      accept: '*/*',
+      responseType: 'json',
+      accept: 'application/json',
       context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<UsuarioDto>;
+        return r as StrictHttpResponse<any>;
       })
     );
   }
 
   /**
+   * Método utilizado para realizar a inclusão de um entidade
+   *
    * This method provides access only to the response body.
    * To access the full response (for headers, for example), `usuarioControllerIncluir$Response()` instead.
    *
@@ -280,10 +246,64 @@ export class UsuarioControllerService extends BaseService {
   },
   context?: HttpContext
 
-): Observable<UsuarioDto> {
+): Observable<any> {
 
     return this.usuarioControllerIncluir$Response(params,context).pipe(
-      map((r: StrictHttpResponse<UsuarioDto>) => r.body as UsuarioDto)
+      map((r: StrictHttpResponse<any>) => r.body as any)
+    );
+  }
+
+  /**
+   * Path part for operation usuarioControllerListAll
+   */
+  static readonly UsuarioControllerListAllPath = '/api/v1/usuario';
+
+  /**
+   * Listagem Geral
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `usuarioControllerListAll()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  usuarioControllerListAll$Response(params?: {
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<any>> {
+
+    const rb = new RequestBuilder(this.rootUrl, UsuarioControllerService.UsuarioControllerListAllPath, 'get');
+    if (params) {
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'application/json',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<any>;
+      })
+    );
+  }
+
+  /**
+   * Listagem Geral
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `usuarioControllerListAll$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  usuarioControllerListAll(params?: {
+  },
+  context?: HttpContext
+
+): Observable<any> {
+
+    return this.usuarioControllerListAll$Response(params,context).pipe(
+      map((r: StrictHttpResponse<any>) => r.body as any)
     );
   }
 

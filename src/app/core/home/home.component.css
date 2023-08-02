@@ -11,25 +11,26 @@ mat-sidenav {
   background: #650303;
   color: white !important;
   border-radius: 10px;
-  padding: 5px;
   text-align: center;
 }
 
 .content {
-  height: calc(100vh - 130px);
   border-radius: 10px;
   margin: 16px;
   margin-left: 32px;
   padding: 6px;
   overflow: auto;
+  transition: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
 }
 
 mat-sidenav-container {
   padding-top: 10px;
-  height: calc(100vh - 65px);
-  background-image: url("src/assets/chamas-background.jpg");
-  background-size: cover;
-  background-position: center;
+  height: calc(97vh - 59px);
+  transition: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
 }
 
 .menu-button {
@@ -57,7 +58,6 @@ mat-icon {
 }
 
 .designation {
-  margin-top: 2px;
   font-size:1rem;
   color: lightgrey;
 }
@@ -66,4 +66,10 @@ mat-divider {
   margin-top: 10px;
   margin-bottom: 16px;
   background-color: rgba(255, 255, 255, 0.5);
+}
+
+mat-elevation-z8{
+  transition: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
 }

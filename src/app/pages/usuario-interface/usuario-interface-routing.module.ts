@@ -1,10 +1,12 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {Routes } from '@angular/router'
+import {CadastroUsuarioComponent} from "./cadastro-usuario/cadastro-usuario.component";
 
 const routes: Routes = [];
 
-@NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
-})
-export class UsuarioInterfaceRoutingModule { }
+export const UsuarioInterfaceRoutes :Routes = [
+
+  {
+    path:"cadastro",
+    component:CadastroUsuarioComponent
+  }
+]

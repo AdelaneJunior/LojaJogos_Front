@@ -25,6 +25,7 @@ import {SecurityInterceptor} from "./arquitetura/security/security.interceptor";
 import {MessageModule} from "./arquitetura/message/message.module";
 import {AppInterceptor} from "./arquitetura/app.interceptor";
 import {AvaliacoesModule} from "./pages/avaliacoes/avaliacoes.module";
+import {UsuarioInterfaceModule} from "./pages/usuario-interface/usuario-interface.module";
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import {AvaliacoesModule} from "./pages/avaliacoes/avaliacoes.module";
     LoaderModule,
     JogosModule,
     AvaliacoesModule,
+    UsuarioInterfaceModule,
     MatDialogModule,
     MatSnackBarModule,
     MatProgressSpinnerModule,

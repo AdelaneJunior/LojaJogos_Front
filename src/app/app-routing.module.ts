@@ -4,6 +4,7 @@ import {HomeComponent} from "./core/home/home.component";
 import {JogosRoutes} from "./pages/jogos/jogos-routing.module";
 import {AutenticacaoRoutes} from "./arquitetura/autenticacao/autenticacao.routing";
 import {AvaliacoesRoutes} from "./pages/avaliacoes/avaliacoes-routing.module";
+import {UsuarioInterfaceRoutes} from "./pages/usuario-interface/usuario-interface-routing.module";
 
 const routes: Routes = [
   {
@@ -17,6 +18,12 @@ const routes: Routes = [
       ...AutenticacaoRoutes
     ]
 
+  },
+  {
+    path:"cadastro",
+    children:[
+      ...UsuarioInterfaceRoutes
+    ]
   }
 ];
 

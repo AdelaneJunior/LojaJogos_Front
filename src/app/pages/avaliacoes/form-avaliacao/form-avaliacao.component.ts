@@ -10,6 +10,7 @@ import {
   ConfirmationDialog,
   ConfirmationDialogResult
 } from "../../../core/confirmation-dialog/confirmation-dialog.component";
+import {SecurityService} from "../../../arquitetura/security/security.service";
 
 @Component({
   selector: 'app-form-avaliacao',
@@ -29,7 +30,8 @@ export class FormAvaliacaoComponent {
    private router: Router,
    private activatedRoute: ActivatedRoute,
    private jogoService:JogoControllerService,
-   private avaliacaoService: AvaliacaoControllerService) {
+   private avaliacaoService: AvaliacaoControllerService,
+   private seguranca:SecurityService) {
 
     this._adapter.setLocale('pt-br');
     this.createForm();
@@ -76,6 +78,8 @@ export class FormAvaliacaoComponent {
 
   onSubmit() {
     console.log("DADOS: ", this.formGroup.value)
+    let avaliacao:AvaliacaoDto = this.formGroup.value;
+    avaliacao.nomeUsuario = this.seguranca.credential.userName;
     this.avaliacaoService.avaliacaoControllerIncluir({body:this.formGroup.value}).subscribe(
       retorno =>{
         console.log("Funcionou: ", retorno);
@@ -95,8 +99,8 @@ export class FormAvaliacaoComponent {
   confirmarAvaliacao(avaliacao: AvaliacaoDto) {
     const dialogRef = this.dialog.open(ConfirmationDialog, {
       data: {
-        titulo: 'Mensagem!!!',
-        mensagem: `Inclusão da avaliação do jogo: ${avaliacao.nomeJogo} (ID: ${avaliacao.jogoSeq}) nota: ${avaliacao.nota} realiza com sucesso!`,
+        titulo: 'Avaliado!!',
+        mensagem: `Inclusão da avaliação do jogo: ${avaliacao.nomeJogo} nota: ${avaliacao.nota} realiza com sucesso!`,
         textoBotoes: {
           ok: 'ok',
         },

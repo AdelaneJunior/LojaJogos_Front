@@ -1,6 +1,6 @@
-export { UsuarioDto } from './models/usuario-dto';
 export { FieldResponse } from './models/field-response';
 export { MessageResponse } from './models/message-response';
+export { UsuarioDto } from './models/usuario-dto';
 export { JogoDto } from './models/jogo-dto';
 export { AvaliacaoDto } from './models/avaliacao-dto';
 export { CredencialDto } from './models/credencial-dto';

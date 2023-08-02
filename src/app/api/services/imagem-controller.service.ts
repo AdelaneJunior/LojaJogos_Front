@@ -9,7 +9,6 @@ import { RequestBuilder } from '../request-builder';
 import { Observable } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
 
-import { MessageResponse } from '../models/message-response';
 
 @Injectable({
   providedIn: 'root',
@@ -28,7 +27,7 @@ export class ImagemControllerService extends BaseService {
   static readonly ImagemControllerUploadImagemPath = '/api/v1/imagem/upload';
 
   /**
-   * Adiciona um arquivo no storage
+   * upload de imagem
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `imagemControllerUploadImagem()` instead.
@@ -42,7 +41,7 @@ export class ImagemControllerService extends BaseService {
   },
   context?: HttpContext
 
-): Observable<StrictHttpResponse<MessageResponse>> {
+): Observable<StrictHttpResponse<any>> {
 
     const rb = new RequestBuilder(this.rootUrl, ImagemControllerService.ImagemControllerUploadImagemPath, 'post');
     if (params) {
@@ -56,13 +55,13 @@ export class ImagemControllerService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<MessageResponse>;
+        return r as StrictHttpResponse<any>;
       })
     );
   }
 
   /**
-   * Adiciona um arquivo no storage
+   * upload de imagem
    *
    * This method provides access only to the response body.
    * To access the full response (for headers, for example), `imagemControllerUploadImagem$Response()` instead.
@@ -76,10 +75,63 @@ export class ImagemControllerService extends BaseService {
   },
   context?: HttpContext
 
-): Observable<MessageResponse> {
+): Observable<any> {
 
     return this.imagemControllerUploadImagem$Response(params,context).pipe(
-      map((r: StrictHttpResponse<MessageResponse>) => r.body as MessageResponse)
+      map((r: StrictHttpResponse<any>) => r.body as any)
+    );
+  }
+
+  /**
+   * Path part for operation imagemControllerObterPeloId
+   */
+  static readonly ImagemControllerObterPeloIdPath = '/api/v1/imagem';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `imagemControllerObterPeloId()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  imagemControllerObterPeloId$Response(params: {
+    requestID: number;
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<string>> {
+
+    const rb = new RequestBuilder(this.rootUrl, ImagemControllerService.ImagemControllerObterPeloIdPath, 'get');
+    if (params) {
+      rb.query('requestID', params.requestID, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'blob',
+      accept: '*/*',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<string>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `imagemControllerObterPeloId$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  imagemControllerObterPeloId(params: {
+    requestID: number;
+  },
+  context?: HttpContext
+
+): Observable<string> {
+
+    return this.imagemControllerObterPeloId$Response(params,context).pipe(
+      map((r: StrictHttpResponse<string>) => r.body as string)
     );
   }
 

@@ -9,6 +9,8 @@ import {
   ConfirmationDialogResult
 } from "../../../core/confirmation-dialog/confirmation-dialog.component";
 import {ActivatedRoute, Router} from "@angular/router";
+import {ImagemControllerService} from "../../../api/services/imagem-controller.service";
+import {SecurityService} from "../../../arquitetura/security/security.service";
 
 @Component({
   selector: 'app-form-jogo',
@@ -19,14 +21,17 @@ export class FormJogoComponent {
   formGroup !: FormGroup;
   codigo!: number;
   paramCodigo: any
+  codigoImagem:number = 0;
   private readonly BOTAO_ADICIONAR = "Adicionar";
   private readonly BOTAO_ALTERAR = "Alterar";
   botao: string = this.BOTAO_ADICIONAR;
-
+  file!: File;
   constructor
   (private formBuilder: FormBuilder,
    private _adapter: DateAdapter<any>,
    public jogoService: JogoControllerService,
+   public imagemService: ImagemControllerService,
+   public securityService: SecurityService,
    private dialog: MatDialog,
    private router: Router,
    private activatedRoute: ActivatedRoute) {
@@ -36,6 +41,11 @@ export class FormJogoComponent {
     this.preencheForm();
   }
 
+  ngOnInit(){
+    if (!this.securityService.hasRoles(["ROLE_ADMIN"])) {
+      this.router.navigate(['/']);
+    }
+  }
   preencheForm() {
 
     this.paramCodigo = this.activatedRoute.snapshot.paramMap.get('codigo')
@@ -51,6 +61,7 @@ export class FormJogoComponent {
         this.jogoService.jogoControllerObterPorId({id: this.codigo}).subscribe(
           retorno => {
             this.codigo = retorno.codigo;
+            this.codigoImagem = retorno.codigoImagem;
             this.botao = this.BOTAO_ALTERAR;
             console.log("Retorno", retorno)
             this.formGroup.patchValue(retorno);
@@ -78,28 +89,37 @@ export class FormJogoComponent {
   onSubmit() {
     console.log("Dados: ", this.formGroup.value);
 
-    if (this.codigo != null) {
-      this.jogoService.jogoControllerAlterar({id: this.codigo, body:this.formGroup.value,}).subscribe(
-        retorno => {
-          console.log("alterou:", retorno);
-          this.confirmarAlteracao(retorno);
-        },
-        error => {
-          console.log("Deu ruim:", +error);
-          alert("Não incluido")
-        }
-      )
-    } else {
-      this.jogoService.jogoControllerIncluir({body :this.formGroup.value}).subscribe(
-        retorno => {
-          console.log("Funcionou:", retorno);
-          this.confirmarInclusao(retorno);
-        },
-        error => {
-          console.log("Deu ruim:", +error);
-          alert("Não incluido")
-        }
-      )
+    if(this.codigoImagem != 0) {
+      if (this.codigo != null) {
+        let jogoDTO:JogoDto = this.formGroup.value;
+        jogoDTO.codigoImagem = this.codigoImagem;
+        this.jogoService.jogoControllerAlterar({id: this.codigo, body: this.formGroup.value,}).subscribe(
+          retorno => {
+            console.log("alterou:", retorno);
+            this.confirmarAlteracao(retorno);
+          },
+          error => {
+            console.log("Deu ruim:", +error);
+            alert("Não incluido")
+          }
+        )
+      } else {
+        let jogoDTO: JogoDto = this.formGroup.value;
+        console.log(this.codigoImagem)
+        jogoDTO.codigoImagem = this.codigoImagem;
+        this.jogoService.jogoControllerIncluir({body: this.formGroup.value}).subscribe(
+          retorno => {
+            console.log("Funcionou:", retorno);
+            this.confirmarInclusao(retorno);
+          },
+          error => {
+            console.log("Deu ruim:", +error);
+            alert("Não incluido")
+          }
+        )
+      }
+    }else{
+      alert("O jogo não tem imagem")
     }
   }
 
@@ -144,6 +164,39 @@ export class FormJogoComponent {
 
   navegarParaLista() {
     this.router.navigate(['/jogos'])
+  }
+
+  onFilechange(event: any) {
+    this.file = event.target.files[0]
+    console.log(this.file)
+
+  }
+
+  upload() {
+    if (this.file) {
+
+      let blob: Blob = new Blob()
+      blob = this.file;
+      console.log(blob)
+      this.imagemService.imagemControllerUploadImagem({body:{imagemASalvar: blob} })
+    .subscribe(retorno => {
+      console.log(retorno)
+      this.codigoImagem = parseInt(retorno);
+
+      const dialogRef = this.dialog.open(ConfirmationDialog, {
+        data: {
+          titulo: 'Imagem',
+          mensagem: `Upload de imagem realizado com sucesso. ID: ${this.codigoImagem}`,
+          textoBotoes: {
+            ok: 'ok',
+          },
+        },
+      });
+
+      })
+    } else {
+      alert("Please select a file first")
+    }
   }
 }
 
