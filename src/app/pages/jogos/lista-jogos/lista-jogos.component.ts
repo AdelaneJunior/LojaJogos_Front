@@ -18,7 +18,7 @@ import {SecurityService} from "../../../arquitetura/security/security.service";
 })
 export class ListaJogosComponent implements OnInit {
 
-  colunasMostrar = [ 'codigo','caminhoImagem', 'nomeJogo', 'categoria', 'desenvolvedora', 'dataLancamento', 'valor', 'nota', 'acao'];
+  colunasMostrar = [ 'codigo','caminhoImagem', 'nomeJogo', 'categoria', 'desenvolvedora', 'dataLancamento', 'valor','acao'];
   jogoListaDataSource: MatTableDataSource<JogoDto> = new MatTableDataSource<JogoDto>([]);
   listaImagemJogo:MatTableDataSource<JogoDto> = new MatTableDataSource<JogoDto>([]);
   admin:boolean = false;
