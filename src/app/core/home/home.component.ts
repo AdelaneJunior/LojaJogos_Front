@@ -1,9 +1,9 @@
 import {Component, ViewChild} from '@angular/core';
-import { BreakpointObserver } from '@angular/cdk/layout';
-import { MatSidenav } from '@angular/material/sidenav';
-import { delay, filter } from 'rxjs/operators';
-import { NavigationEnd, Router } from '@angular/router';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import {BreakpointObserver} from '@angular/cdk/layout';
+import {MatSidenav} from '@angular/material/sidenav';
+import {delay, filter} from 'rxjs/operators';
+import {NavigationEnd, Router} from '@angular/router';
+import {UntilDestroy, untilDestroyed} from '@ngneat/until-destroy';
 import {SecurityService} from "../../arquitetura/security/security.service";
 import {MessageService} from "../../arquitetura/message/message.service";
 
@@ -18,6 +18,7 @@ export class HomeComponent {
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
   admin!:boolean;
+  public nomeUsuario: String = "";
   constructor(
     private observer: BreakpointObserver,
     private router: Router,
@@ -34,6 +35,8 @@ export class HomeComponent {
       if (this.securityService.isValid()) {
         this.router.navigate(['/']);
         this.admin = !this.securityService.hasRoles(['ROLE_ADMIN'])
+        this.nomeUsuario = this.securityService.credential.userName;
+        console.log(this.nomeUsuario)
         console.log(this.securityService)
       }
       if (!this.securityService.isValid())

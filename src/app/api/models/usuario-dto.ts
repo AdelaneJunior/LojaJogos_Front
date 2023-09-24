@@ -1,6 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
 export interface UsuarioDto {
+  carrinhoCodigo?: number;
   codigo?: number;
   email?: string;
   login?: string;

@@ -26,6 +26,7 @@ import {MessageModule} from "./arquitetura/message/message.module";
 import {AppInterceptor} from "./arquitetura/app.interceptor";
 import {AvaliacoesModule} from "./pages/avaliacoes/avaliacoes.module";
 import {UsuarioInterfaceModule} from "./pages/usuario-interface/usuario-interface.module";
+import {CarrinhoModule} from "./pages/carrinho/carrinho.module";
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import {UsuarioInterfaceModule} from "./pages/usuario-interface/usuario-interfac
     JogosModule,
     AvaliacoesModule,
     UsuarioInterfaceModule,
+    CarrinhoModule,
     MatDialogModule,
     MatSnackBarModule,
     MatProgressSpinnerModule,

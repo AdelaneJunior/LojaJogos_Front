@@ -52,6 +52,10 @@
         <button mat-icon-button [routerLink]="['/avaliacao/nova',element.codigo]" >
           <mat-icon>star</mat-icon>
         </button>
+
+        <button mat-icon-button (click)="adicionarAoCarrinho(element)" >
+          <mat-icon>shopping</mat-icon>
+        </button>
       </td>
     </ng-container>
 

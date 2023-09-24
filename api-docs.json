@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "Barraquinha de Jogos ",
+    "title": "Estoq Facil",
     "license": {
       "name": "Apache License 2.0",
       "url": "http://www.apache.org/licenses/LICENSE-2.0"
@@ -26,7 +26,7 @@
           "usuario-controller"
         ],
         "description": "Obter os dados completos de uma entidiade pelo id informado!",
-        "operationId": "ObterPorId",
+        "operationId": "UsuarioController_ObterPorId",
         "parameters": [
           {
             "name": "id",
@@ -72,7 +72,7 @@
           "usuario-controller"
         ],
         "description": "Método utilizado para altlerar os dados de uma entidiade",
-        "operationId": "alterar",
+        "operationId": "UsuarioController_alterar",
         "parameters": [
           {
             "name": "id",
@@ -138,7 +138,7 @@
           "usuario-controller"
         ],
         "description": "Método utilizado para remover uma entidiade pela id informado",
-        "operationId": "remover",
+        "operationId": "UsuarioController_remover",
         "parameters": [
           {
             "name": "id",
@@ -180,17 +180,17 @@
         }
       }
     },
-    "/api/v1/jogo/{id}": {
+    "/api/v1/produto/{id}": {
       "get": {
         "tags": [
-          "jogo-controller"
+          "produto-controller"
         ],
         "description": "Obter os dados completos de uma entidiade pelo id informado!",
-        "operationId": "ObterPorId_1",
+        "operationId": "ProdutoController_ObterPorId",
         "parameters": [
           {
             "name": "id",
-            "in": "query",
+            "in": "path",
             "required": true,
             "schema": {
               "type": "integer",
@@ -229,168 +229,10 @@
       },
       "put": {
         "tags": [
-          "jogo-controller"
+          "produto-controller"
         ],
         "description": "Método utilizado para altlerar os dados de uma entidiade",
-        "operationId": "alterar_1",
-        "parameters": [
-          {
-            "name": "modeloDTO",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/JogoDTO"
-            }
-          },
-          {
-            "name": "id",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Listagem geral",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Registro não encontrado",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessageResponse"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Acesso negado",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessageResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Erro de Negócio",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessageResponse"
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "jogo-controller"
-        ],
-        "description": "Método utilizado para remover uma entidiade pela id informado",
-        "operationId": "remover_1",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Entidade Removida",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Registro não encontrado",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessageResponse"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Acesso negado",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessageResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/v1/avaliacao/{id}": {
-      "get": {
-        "tags": [
-          "avaliacao-controller"
-        ],
-        "description": "Obter os dados completos de uma entidiade pelo id informado!",
-        "operationId": "ObterPorId_2",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Entidade encontrada",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Registro não encontrado",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessageResponse"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Acesso negado",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessageResponse"
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "avaliacao-controller"
-        ],
-        "description": "Método utilizado para altlerar os dados de uma entidiade",
-        "operationId": "alterar_2",
+        "operationId": "ProdutoController_alterar",
         "parameters": [
           {
             "name": "id",
@@ -406,7 +248,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/AvaliacaoDTO"
+                "$ref": "#/components/schemas/ProdutoDTO"
               }
             }
           },
@@ -453,10 +295,810 @@
       },
       "delete": {
         "tags": [
-          "avaliacao-controller"
+          "produto-controller"
         ],
         "description": "Método utilizado para remover uma entidiade pela id informado",
-        "operationId": "remover_2",
+        "operationId": "ProdutoController_remover",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Entidade Removida",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "404": {
+            "description": "Registro não encontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Acesso negado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/pessoa/{id}": {
+      "get": {
+        "tags": [
+          "pessoa-controller"
+        ],
+        "description": "Obter os dados completos de uma entidiade pelo id informado!",
+        "operationId": "PessoaController_ObterPorId",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Entidade encontrada",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "404": {
+            "description": "Registro não encontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Acesso negado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "pessoa-controller"
+        ],
+        "description": "Método utilizado para altlerar os dados de uma entidiade",
+        "operationId": "PessoaController_alterar",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PessoaDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Listagem geral",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "404": {
+            "description": "Registro não encontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Acesso negado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro de Negócio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "pessoa-controller"
+        ],
+        "description": "Método utilizado para remover uma entidiade pela id informado",
+        "operationId": "PessoaController_remover",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Entidade Removida",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "404": {
+            "description": "Registro não encontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Acesso negado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/movimentacao/{id}": {
+      "get": {
+        "tags": [
+          "movimentacao-controller"
+        ],
+        "description": "Obter os dados completos de uma entidiade pelo id informado!",
+        "operationId": "MovimentacaoController_ObterPorId",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Entidade encontrada",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "404": {
+            "description": "Registro não encontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Acesso negado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "movimentacao-controller"
+        ],
+        "description": "Método utilizado para altlerar os dados de uma entidiade",
+        "operationId": "MovimentacaoController_alterar",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MovimentacaoDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Listagem geral",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "404": {
+            "description": "Registro não encontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Acesso negado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro de Negócio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "movimentacao-controller"
+        ],
+        "description": "Método utilizado para remover uma entidiade pela id informado",
+        "operationId": "MovimentacaoController_remover",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Entidade Removida",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "404": {
+            "description": "Registro não encontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Acesso negado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/funcionario/{id}": {
+      "get": {
+        "tags": [
+          "funcionario-controller"
+        ],
+        "description": "Obter os dados completos de uma entidiade pelo id informado!",
+        "operationId": "FuncionarioController_ObterPorId",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Entidade encontrada",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "404": {
+            "description": "Registro não encontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Acesso negado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "funcionario-controller"
+        ],
+        "description": "Método utilizado para altlerar os dados de uma entidiade",
+        "operationId": "FuncionarioController_alterar",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FuncionarioDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Listagem geral",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "404": {
+            "description": "Registro não encontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Acesso negado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro de Negócio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "funcionario-controller"
+        ],
+        "description": "Método utilizado para remover uma entidiade pela id informado",
+        "operationId": "FuncionarioController_remover",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Entidade Removida",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "404": {
+            "description": "Registro não encontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Acesso negado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/cliente/{id}": {
+      "get": {
+        "tags": [
+          "cliente-controller"
+        ],
+        "description": "Obter os dados completos de uma entidiade pelo id informado!",
+        "operationId": "ClienteController_ObterPorId",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Entidade encontrada",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "404": {
+            "description": "Registro não encontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Acesso negado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "cliente-controller"
+        ],
+        "description": "Método utilizado para altlerar os dados de uma entidiade",
+        "operationId": "ClienteController_alterar",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ClienteDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Listagem geral",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "404": {
+            "description": "Registro não encontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Acesso negado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro de Negócio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "cliente-controller"
+        ],
+        "description": "Método utilizado para remover uma entidiade pela id informado",
+        "operationId": "ClienteController_remover",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Entidade Removida",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "404": {
+            "description": "Registro não encontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Acesso negado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/categoria/{id}": {
+      "get": {
+        "tags": [
+          "categoria-controller"
+        ],
+        "description": "Obter os dados completos de uma entidiade pelo id informado!",
+        "operationId": "CategoriaController_ObterPorId",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Entidade encontrada",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "404": {
+            "description": "Registro não encontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Acesso negado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "categoria-controller"
+        ],
+        "description": "Método utilizado para altlerar os dados de uma entidiade",
+        "operationId": "CategoriaController_alterar",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CategoriaDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Listagem geral",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "404": {
+            "description": "Registro não encontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Acesso negado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro de Negócio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "categoria-controller"
+        ],
+        "description": "Método utilizado para remover uma entidiade pela id informado",
+        "operationId": "CategoriaController_remover",
         "parameters": [
           {
             "name": "id",
@@ -565,13 +1207,60 @@
         }
       }
     },
-    "/api/v1/usuario": {
-      "get": {
+    "/api/v1/usuario/singup": {
+      "post": {
         "tags": [
           "usuario-controller"
         ],
+        "description": "Método utilizado para realizar a inclusão de um entidade",
+        "operationId": "UsuarioController_incluir",
+        "parameters": [
+          {
+            "name": "modeloDTO",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/UsuarioDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Entidade Incluida",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "403": {
+            "description": "Acesso negado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro de Negócio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/produto": {
+      "get": {
+        "tags": [
+          "produto-controller"
+        ],
         "description": "Listagem Geral",
-        "operationId": "listAll",
+        "operationId": "ProdutoController_listAll",
         "responses": {
           "200": {
             "description": "Listagem geral",
@@ -613,15 +1302,15 @@
       },
       "post": {
         "tags": [
-          "usuario-controller"
+          "produto-controller"
         ],
         "description": "Método utilizado para realizar a inclusão de um entidade",
-        "operationId": "incluir",
+        "operationId": "ProdutoController_incluir",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UsuarioDTO"
+                "$ref": "#/components/schemas/ProdutoDTO"
               }
             }
           },
@@ -657,13 +1346,13 @@
         }
       }
     },
-    "/api/v1/jogo": {
+    "/api/v1/pessoa": {
       "get": {
         "tags": [
-          "jogo-controller"
+          "pessoa-controller"
         ],
         "description": "Listagem Geral",
-        "operationId": "listAll_1",
+        "operationId": "PessoaController_listAll",
         "responses": {
           "200": {
             "description": "Listagem geral",
@@ -705,20 +1394,112 @@
       },
       "post": {
         "tags": [
-          "jogo-controller"
+          "pessoa-controller"
         ],
         "description": "Método utilizado para realizar a inclusão de um entidade",
-        "operationId": "incluir_1",
-        "parameters": [
-          {
-            "name": "modeloDTO",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/JogoDTO"
+        "operationId": "PessoaController_incluir",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PessoaDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Entidade Incluida",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "403": {
+            "description": "Acesso negado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro de Negócio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
             }
           }
+        }
+      }
+    },
+    "/api/v1/movimentacao": {
+      "get": {
+        "tags": [
+          "movimentacao-controller"
         ],
+        "description": "Listagem Geral",
+        "operationId": "MovimentacaoController_listAll",
+        "responses": {
+          "200": {
+            "description": "Listagem geral",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "404": {
+            "description": "Registro não encontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Acesso negado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro de Negócio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "movimentacao-controller"
+        ],
+        "description": "Método utilizado para realizar a inclusão de um entidade",
+        "operationId": "MovimentacaoController_incluir",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MovimentacaoDTO"
+              }
+            }
+          },
+          "required": true
+        },
         "responses": {
           "200": {
             "description": "Entidade Incluida",
@@ -754,8 +1535,8 @@
         "tags": [
           "imagem-controller"
         ],
-        "description": "Adiciona um arquivo no storage",
-        "operationId": "uploadImagem",
+        "description": "upload de imagem",
+        "operationId": "ImagemController_uploadImagem",
         "requestBody": {
           "content": {
             "multipart/form-data": {
@@ -776,17 +1557,13 @@
         },
         "responses": {
           "200": {
-            "description": "Adiciona arquivo",
+            "description": "Media geral do Jogo",
             "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessageResponse"
-                }
-              }
+              "application/json": {}
             }
           },
-          "403": {
-            "description": "Acesso negado",
+          "404": {
+            "description": "Registro não encontrado",
             "content": {
               "application/json": {
                 "schema": {
@@ -798,13 +1575,13 @@
         }
       }
     },
-    "/api/v1/avaliacao": {
+    "/api/v1/funcionario": {
       "get": {
         "tags": [
-          "avaliacao-controller"
+          "funcionario-controller"
         ],
         "description": "Listagem Geral",
-        "operationId": "listAll_2",
+        "operationId": "FuncionarioController_listAll",
         "responses": {
           "200": {
             "description": "Listagem geral",
@@ -846,15 +1623,199 @@
       },
       "post": {
         "tags": [
-          "avaliacao-controller"
+          "funcionario-controller"
         ],
         "description": "Método utilizado para realizar a inclusão de um entidade",
-        "operationId": "incluir_2",
+        "operationId": "FuncionarioController_incluir",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/AvaliacaoDTO"
+                "$ref": "#/components/schemas/FuncionarioDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Entidade Incluida",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "403": {
+            "description": "Acesso negado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro de Negócio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/cliente": {
+      "get": {
+        "tags": [
+          "cliente-controller"
+        ],
+        "description": "Listagem Geral",
+        "operationId": "ClienteController_listAll",
+        "responses": {
+          "200": {
+            "description": "Listagem geral",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "404": {
+            "description": "Registro não encontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Acesso negado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro de Negócio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "cliente-controller"
+        ],
+        "description": "Método utilizado para realizar a inclusão de um entidade",
+        "operationId": "ClienteController_incluir",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ClienteDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Entidade Incluida",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "403": {
+            "description": "Acesso negado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro de Negócio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/categoria": {
+      "get": {
+        "tags": [
+          "categoria-controller"
+        ],
+        "description": "Listagem Geral",
+        "operationId": "CategoriaController_listAll",
+        "responses": {
+          "200": {
+            "description": "Listagem geral",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "404": {
+            "description": "Registro não encontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Acesso negado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro de Negócio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "categoria-controller"
+        ],
+        "description": "Método utilizado para realizar a inclusão de um entidade",
+        "operationId": "CategoriaController_incluir",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CategoriaDTO"
               }
             }
           },
@@ -950,13 +1911,60 @@
         }
       }
     },
-    "/api/v1/usuario/api/v1/usuario/porlogin": {
+    "/api/v1/usuario": {
+      "get": {
+        "tags": [
+          "usuario-controller"
+        ],
+        "description": "Listagem Geral",
+        "operationId": "UsuarioController_listAll",
+        "responses": {
+          "200": {
+            "description": "Listagem geral",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "404": {
+            "description": "Registro não encontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Acesso negado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro de Negócio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/usuario/obterPorlogin": {
       "get": {
         "tags": [
           "usuario-controller"
         ],
         "description": "Obtendo Usuario por login",
-        "operationId": "obterPeloLogin",
+        "operationId": "UsuarioController_obterPorLogin",
         "parameters": [
           {
             "name": "username",
@@ -969,7 +1977,7 @@
         ],
         "responses": {
           "200": {
-            "description": "UsuarioDTO  sendo obtido atraves do login",
+            "description": "UsuarioDTO  sendo obtido atraves do login teste",
             "content": {
               "application/json": {}
             }
@@ -987,16 +1995,15 @@
         }
       }
     },
-    "/api/v1/avaliacao/api/v1/avaliacao/qtdAvaliacoesJogo": {
+    "/api/v1/imagem": {
       "get": {
         "tags": [
-          "avaliacao-controller"
+          "imagem-controller"
         ],
-        "description": "Quantidade de Avaliações por Jogo",
-        "operationId": "quantidadeAvaliacoesJogo",
+        "operationId": "ImagemController_obterPeloID",
         "parameters": [
           {
-            "name": "jogoSeq",
+            "name": "requestID",
             "in": "query",
             "required": true,
             "schema": {
@@ -1007,185 +2014,11 @@
         ],
         "responses": {
           "200": {
-            "description": "Quantidade de Avaliações por Jogo",
+            "description": "OK",
             "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Registro não encontrado",
-            "content": {
-              "application/json": {
+              "*/*": {
                 "schema": {
-                  "$ref": "#/components/schemas/MessageResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/v1/avaliacao/api/v1/avaliacao/mediajogo": {
-      "get": {
-        "tags": [
-          "avaliacao-controller"
-        ],
-        "description": "Media geral do Jogo",
-        "operationId": "obterMediaJogo",
-        "parameters": [
-          {
-            "name": "jogoSeq",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Media geral do Jogo",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Registro não encontrado",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessageResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/v1/avaliacao/api/v1/avaliacao/jogosAvaliados": {
-      "get": {
-        "tags": [
-          "avaliacao-controller"
-        ],
-        "description": "Listagem de Jogos Avaliados",
-        "operationId": "obterJogosAvaliados",
-        "responses": {
-          "200": {
-            "description": "Listagem de Jogos Avaliados",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Registro não encontrado",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessageResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/v1/avaliacao/api/v1/avaliacao/jogosAvaliadosMedia": {
-      "get": {
-        "tags": [
-          "avaliacao-controller"
-        ],
-        "description": "Listagem de Jogos Avaliados com media",
-        "operationId": "obterJogosAvaliadosComMedia",
-        "responses": {
-          "200": {
-            "description": "Listagem de Jogos Avaliados com media",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Registro não encontrado",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessageResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/v1/avaliacao/api/v1/avaliacao/avaliacoesUser": {
-      "get": {
-        "tags": [
-          "avaliacao-controller"
-        ],
-        "description": "Listagem das Avaliações por Usuario",
-        "operationId": "obterListaAvaliacoesPorUsuario",
-        "parameters": [
-          {
-            "name": "userSeq",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Listagem das Avaliações por Usuario",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Registro não encontrado",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessageResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/v1/avaliacao/api/v1/avaliacao/avaliacoesJogo": {
-      "get": {
-        "tags": [
-          "avaliacao-controller"
-        ],
-        "description": "Listagem das Avaliações por Jogo",
-        "operationId": "obterListaAvaliacaoPorJogo",
-        "parameters": [
-          {
-            "name": "jogoSeq",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Listagem das Avaliações por Jogo",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Registro não encontrado",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessageResponse"
+                  "type": "string"
                 }
               }
             }
@@ -1500,77 +2333,159 @@
           "senha": {
             "type": "string"
           },
+          "funcionarioCodigo": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "funcionarioNome": {
+            "type": "string"
+          },
+          "funcionarioEmail": {
+            "type": "string"
+          },
+          "funcionarioCargo": {
+            "type": "string"
+          }
+        }
+      },
+      "ProdutoDTO": {
+        "type": "object",
+        "properties": {
+          "codigo": {
+            "type": "integer",
+            "format": "int64"
+          },
           "nome": {
+            "type": "string"
+          },
+          "descricao": {
+            "type": "string"
+          },
+          "quantidade": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "preco": {
+            "type": "number",
+            "format": "double"
+          },
+          "imagemID": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "imagemCaminho": {
+            "type": "string"
+          },
+          "categoriaID": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "usuarioID": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "PessoaDTO": {
+        "type": "object",
+        "properties": {
+          "codigo": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "cpf": {
+            "type": "string"
+          },
+          "nome": {
+            "type": "string"
+          },
+          "telefone": {
             "type": "string"
           },
           "email": {
             "type": "string"
           },
-          "status": {
-            "type": "boolean"
-          },
-          "roles": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          }
-        }
-      },
-      "JogoDTO": {
-        "type": "object",
-        "properties": {
-          "codigo": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "nomeJogo": {
-            "type": "string"
-          },
-          "desenvolvedora": {
-            "type": "string"
-          },
-          "categoria": {
-            "type": "string"
-          },
-          "valor": {
-            "type": "number"
-          },
-          "dataLancamento": {
+          "nascimento": {
             "type": "string",
             "format": "date"
           }
         }
       },
-      "AvaliacaoDTO": {
+      "MovimentacaoDTO": {
         "type": "object",
         "properties": {
           "codigo": {
             "type": "integer",
             "format": "int64"
           },
-          "jogoSeq": {
+          "produtoID": {
             "type": "integer",
             "format": "int64"
+          },
+          "usuarioID": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "quantidade": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "data": {
+            "type": "string",
+            "format": "date"
+          },
+          "acao": {
+            "type": "string",
+            "enum": [
+              "ENTRADA",
+              "SAIDA"
+            ]
+          }
+        }
+      },
+      "FuncionarioDTO": {
+        "type": "object",
+        "properties": {
+          "codigo": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "pessoaID": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "cargo": {
+            "type": "string"
+          }
+        }
+      },
+      "ClienteDTO": {
+        "type": "object",
+        "properties": {
+          "codigo": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "pessoaID": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "CategoriaDTO": {
+        "type": "object",
+        "properties": {
+          "codigo": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "nome": {
+            "type": "string"
           },
           "descricao": {
             "type": "string"
           },
-          "nota": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "nomeJogo": {
-            "type": "string"
-          },
-          "media": {
-            "type": "number",
-            "format": "float"
-          },
-          "nomeUsuario": {
-            "type": "string"
-          },
-          "usuaseq": {
+          "usuarioID": {
             "type": "integer",
             "format": "int64"
           }

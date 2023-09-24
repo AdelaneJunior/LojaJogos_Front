@@ -1,7 +1,10 @@
 export { FieldResponse } from './models/field-response';
 export { MessageResponse } from './models/message-response';
 export { UsuarioDto } from './models/usuario-dto';
+export { JogoCarrinhoDto } from './models/jogo-carrinho-dto';
+export { PkJogoCarrinho } from './models/pk-jogo-carrinho';
 export { JogoDto } from './models/jogo-dto';
+export { CarrinhoDto } from './models/carrinho-dto';
 export { AvaliacaoDto } from './models/avaliacao-dto';
 export { CredencialDto } from './models/credencial-dto';
 export { UsuarioSenhaDto } from './models/usuario-senha-dto';

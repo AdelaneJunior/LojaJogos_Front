@@ -5,7 +5,9 @@ import { HttpClient } from '@angular/common/http';
 import { ApiConfiguration, ApiConfigurationParams } from './api-configuration';
 
 import { UsuarioControllerService } from './services/usuario-controller.service';
+import { JogoCarrinhoControllerService } from './services/jogo-carrinho-controller.service';
 import { JogoControllerService } from './services/jogo-controller.service';
+import { CarrinhoControllerService } from './services/carrinho-controller.service';
 import { AvaliacaoControllerService } from './services/avaliacao-controller.service';
 import { AuthApiService } from './services/auth-api.service';
 import { ImagemControllerService } from './services/imagem-controller.service';
@@ -19,7 +21,9 @@ import { ImagemControllerService } from './services/imagem-controller.service';
   declarations: [],
   providers: [
     UsuarioControllerService,
+    JogoCarrinhoControllerService,
     JogoControllerService,
+    CarrinhoControllerService,
     AvaliacaoControllerService,
     AuthApiService,
     ImagemControllerService,

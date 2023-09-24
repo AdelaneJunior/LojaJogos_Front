@@ -1,0 +1,25 @@
+<mat-card>
+
+  <mat-card-header>
+    <mat-card-title> CARRINHO DE COMPRA </mat-card-title>
+  </mat-card-header>
+
+  <mat-card-actions>
+
+    <div class="example-button-row">
+      <button mat-raised-button routerLink="/carrinho" class="button">
+        <mat-icon>home</mat-icon>
+        <span>Carrinho</span>
+      </button>
+      <button mat-raised-button routerLink="/jogos" class="button">
+        <mat-icon>add</mat-icon>
+        <span>Adcionar Jogo ao Carrinho</span>
+      </button>
+    </div>
+  </mat-card-actions>
+
+  <mat-card-content>
+    <router-outlet></router-outlet>
+  </mat-card-content>
+
+</mat-card>

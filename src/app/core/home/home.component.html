@@ -1,12 +1,20 @@
 <mat-toolbar class="mat-elevation-z8">
-  <button
-    mat-icon-button
-    (click)="sidenav.toggle()"
-  >
+  <button mat-icon-button (click)="sidenav.toggle()">
     <mat-icon>list</mat-icon>
-
   </button>
-  LOJA DE JOGOS DO BEBEL
+
+  <span> LOJA DE JOGOS DO BEBEL </span>
+
+  <span class="vaiprocanto"></span>
+
+  <span> Usuario: {{nomeUsuario}} </span>
+
+  <span class="espacinho"></span>
+  <button mat-icon-button routerLink="/carrinho">
+    <mat-icon>shopping_cart</mat-icon>
+  </button>
+
+
 </mat-toolbar>
 
 <mat-sidenav-container>

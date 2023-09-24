@@ -73,3 +73,11 @@ mat-elevation-z8{
   box-shadow: none !important;
   background: transparent !important;
 }
+
+.vaiprocanto {
+  flex: 1 1 auto;
+}
+
+.espacinho{
+  margin-right: 10px;
+}
