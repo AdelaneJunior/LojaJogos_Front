@@ -3,9 +3,10 @@ import {MatTableDataSource} from "@angular/material/table";
 import {CarrinhoControllerService} from "../../../api/services/carrinho-controller.service";
 import {MatDialog} from "@angular/material/dialog";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {CarrinhoDto} from "../../../api/models/carrinho-dto";
 import {JogoCarrinhoDto} from "../../../api/models/jogo-carrinho-dto";
+import {SecurityService} from "../../../arquitetura/security/security.service";
 
 @Component({
   selector: 'app-list-carrinho',
@@ -14,29 +15,32 @@ import {JogoCarrinhoDto} from "../../../api/models/jogo-carrinho-dto";
 })
 export class ListCarrinhoComponent implements OnInit{
 
-  colunasAMostrar : string[] = ['nomeJogo', 'preco', 'quantidade'];
-
-  carrinhoListaDataSource: MatTableDataSource<JogoCarrinhoDto> =
+  colunasAMostrar : string[] = ['jogoCodigo','jogoNome', 'quantidade','precoFinal', 'acao'];
+  jogoCarrinhoListaDataSource: MatTableDataSource<JogoCarrinhoDto> =
     new MatTableDataSource<JogoCarrinhoDto>([])
-
-  carrinhoList : CarrinhoDto[] = [];
+  carrinhoDto !: CarrinhoDto;
+  jogosCarrinho : JogoCarrinhoDto[] = [];
 
   constructor(
     public carrinhoService : CarrinhoControllerService,
+    public securityService: SecurityService,
     private dialog : MatDialog,
     private snackBar : MatSnackBar,
-    private router : Router) {}
+    private router : Router,
+    private route: ActivatedRoute,) {}
 
   ngOnInit(): void {
-    this.buscarDados();
+    this.iniciarCarrinho();
   }
 
 
-  private buscarDados() {
-    this.carrinhoService.carrinhoControllerListAll().subscribe( data => {
-        this.carrinhoList = data;
-      }
-    )
-    console.log(this.carrinhoList)
+  private iniciarCarrinho() {
+
+    this.carrinhoDto = this.route.snapshot.data['carrinho'];
+    console.log("JOGOS DESSE CARRINHO",this.carrinhoDto)
+
+    this.jogoCarrinhoListaDataSource.data = this.carrinhoDto.jogoCarrinho || [];
+    console.log("SEI LA", this.jogoCarrinhoListaDataSource.data)
   }
+
 }

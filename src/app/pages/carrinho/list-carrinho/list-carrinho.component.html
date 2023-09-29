@@ -1,1 +1,36 @@
-<p>list-carrinho works!</p>
+<section class="example-container mat-elevation-z8" tabindex="0">
+
+  <table mat-table [dataSource]="jogoCarrinhoListaDataSource">
+
+    <ng-container matColumnDef="jogoCodigo">
+      <th mat-header-cell class="header-cell" *matHeaderCellDef> Jogo Codigo</th>
+      <td mat-cell class="cell" *matCellDef="let element"> {{element.jogoCodigo}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="jogoNome">
+      <th mat-header-cell class="header-cell" *matHeaderCellDef> Nome Jogo</th>
+      <td mat-cell class="cell" *matCellDef="let element"> {{element.jogoNome}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="quantidade">
+      <th mat-header-cell class="header-cell" *matHeaderCellDef> Quantidade</th>
+      <td mat-cell class="cell" *matCellDef="let element"> {{element.quantidade}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="precoFinal">
+      <th mat-header-cell class="header-cell" *matHeaderCellDef> Preço Final</th>
+      <td mat-cell class="cell" *matCellDef="let element"> {{element.precoFinal}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="acao">
+      <th mat-header-cell class="header-cell" *matHeaderCellDef>Ações</th>
+      <td mat-cell class="cell" *matCellDef="let element">
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="colunasAMostrar; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: colunasAMostrar;"></tr>
+  </table>
+
+  <span> PREÇO FINAL: {{carrinhoDto.precoFinal}} </span>
+</section>

@@ -1,7 +1,7 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {Routes} from '@angular/router';
 import {HomeCarrinhoComponent} from "./home-carrinho/home-carrinho.component";
 import {ListCarrinhoComponent} from "./list-carrinho/list-carrinho.component";
+import {CarrinhoResolve} from "./shared/carrinho-resolve.service";
 
 const routes: Routes = [];
 
@@ -14,7 +14,10 @@ export const CarrinhoRoutes: Routes = [
     children:[
       {
         path:"",
-        component:ListCarrinhoComponent
+        component:ListCarrinhoComponent,
+        resolve:{
+          carrinho : CarrinhoResolve
+        }
       }
     ]
   }

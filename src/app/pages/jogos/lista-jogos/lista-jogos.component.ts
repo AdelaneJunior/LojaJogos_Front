@@ -48,7 +48,7 @@ export class ListaJogosComponent implements OnInit {
   }
 
   private buscarDados() {
-    // @ts-ignore
+
     this.jogoService.jogoControllerListAll().subscribe(data => {
       this.jogoListaDataSource.data = data;
       this.listaImagemJogo.data = data;
@@ -113,24 +113,21 @@ export class ListaJogosComponent implements OnInit {
     jogoCarrinhoDto.quantidade = 1;
     jogoCarrinhoDto.desconto = 0;
 
-    this.carrinhoDto.jogos = [];
-    this.carrinhoDto.jogos.push(jogoCarrinhoDto);
+    this.carrinhoDto.jogoCarrinho = [];
+    this.carrinhoDto.jogoCarrinho.push(jogoCarrinhoDto);
 
-    this.carrinhoDto.precoFinal = <number> jogo.valor * jogoCarrinhoDto.quantidade;
-
-    this.carrinhoService.carrinhoControllerIncluir({modeloDTO:this.carrinhoDto}).subscribe(
+    this.carrinhoService.carrinhoControllerAlterar({body:this.carrinhoDto, id:this.carrinhoDto.codigo||0}).subscribe(
       retorno => {
         console.log("Funcionou:", retorno)},
       error => {
         console.log("ruim: ", +error)
       }
     );
-
   }
 
   private montaCarrinho() {
 
-    let codigo:number = <number>this.securityService.credential.user?.id;
+    let codigo:number = this.securityService.credential.user?.id || 0;
 
     console.log("Codigo", codigo)
 
@@ -138,11 +135,12 @@ export class ListaJogosComponent implements OnInit {
       retorno =>{
         this.usuarioDto = retorno;
         console.log("su", this.usuarioDto)
-        codigo =  <number>this.usuarioDto.carrinhoCodigo;
+        codigo =  this.usuarioDto.carrinhoCodigo || 0;
         console.log("Codigo do caro", codigo)
         this.carrinhoService.carrinhoControllerObterPorId({id:codigo}).subscribe(
           retorno =>{
             this.carrinhoDto = retorno
+            console.log("carinho", this.carrinhoDto)
           })
       }
     )

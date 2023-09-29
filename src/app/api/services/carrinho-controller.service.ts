@@ -1,15 +1,15 @@
 /* tslint:disable */
 /* eslint-disable */
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse, HttpContext } from '@angular/common/http';
-import { BaseService } from '../base-service';
-import { ApiConfiguration } from '../api-configuration';
-import { StrictHttpResponse } from '../strict-http-response';
-import { RequestBuilder } from '../request-builder';
-import { Observable } from 'rxjs';
-import { map, filter } from 'rxjs/operators';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpContext, HttpResponse} from '@angular/common/http';
+import {BaseService} from '../base-service';
+import {ApiConfiguration} from '../api-configuration';
+import {StrictHttpResponse} from '../strict-http-response';
+import {RequestBuilder} from '../request-builder';
+import {Observable} from 'rxjs';
+import {filter, map} from 'rxjs/operators';
 
-import { CarrinhoDto } from '../models/carrinho-dto';
+import {CarrinhoDto} from '../models/carrinho-dto';
 
 @Injectable({
   providedIn: 'root',
@@ -261,10 +261,10 @@ export class CarrinhoControllerService extends BaseService {
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `carrinhoControllerIncluir()` instead.
    *
-   * This method doesn't expect any request body.
+   * This method sends `application/json` and handles request body of type `application/json`.
    */
   carrinhoControllerIncluir$Response(params: {
-    modeloDTO: CarrinhoDto;
+    body: CarrinhoDto
   },
   context?: HttpContext
 
@@ -272,7 +272,7 @@ export class CarrinhoControllerService extends BaseService {
 
     const rb = new RequestBuilder(this.rootUrl, CarrinhoControllerService.CarrinhoControllerIncluirPath, 'post');
     if (params) {
-      rb.query('modeloDTO', params.modeloDTO, {});
+      rb.body(params.body, 'application/json');
     }
 
     return this.http.request(rb.build({
@@ -293,10 +293,10 @@ export class CarrinhoControllerService extends BaseService {
    * This method provides access only to the response body.
    * To access the full response (for headers, for example), `carrinhoControllerIncluir$Response()` instead.
    *
-   * This method doesn't expect any request body.
+   * This method sends `application/json` and handles request body of type `application/json`.
    */
   carrinhoControllerIncluir(params: {
-    modeloDTO: CarrinhoDto;
+    body: CarrinhoDto
   },
   context?: HttpContext
 
