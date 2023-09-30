@@ -5,6 +5,7 @@ import {ListaJogosComponent} from "./lista-jogos/lista-jogos.component";
 import {FormJogoComponent} from "./form-jogo/form-jogo.component";
 import {FormAvaliacaoComponent} from "../avaliacoes/form-avaliacao/form-avaliacao.component";
 import {HomeAvaliacaoComponent} from "../avaliacoes/home-avaliacao/home-avaliacao.component";
+import {CarrinhoResolve} from "../carrinho/shared/carrinho-resolve.service";
 
 const routes: Routes = [];
 
@@ -16,7 +17,10 @@ export const JogosRoutes: Routes = [
     children:[
       {
         path: "",
-        component: ListaJogosComponent
+        component: ListaJogosComponent,
+        resolve:{
+          carrinho : CarrinhoResolve
+        }
       },
       {
         path: "novo",

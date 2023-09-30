@@ -17,6 +17,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from "@angular/material/core";
 import {MatListModule} from "@angular/material/list";
+import {CarrinhoResolve} from "../carrinho/shared/carrinho-resolve.service";
 
 
 @NgModule({
@@ -40,6 +41,9 @@ import {MatListModule} from "@angular/material/list";
         MatNativeDateModule,
         MatListModule
 
-    ]
+    ],
+  providers: [
+    CarrinhoResolve
+  ]
 })
 export class JogosModule { }

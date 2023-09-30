@@ -8,7 +8,7 @@ import {
 } from "../../../core/confirmation-dialog/confirmation-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {SecurityService} from "../../../arquitetura/security/security.service";
 import {CarrinhoControllerService} from "../../../api/services/carrinho-controller.service";
 import {CarrinhoDto} from "../../../api/models/carrinho-dto";
@@ -33,11 +33,12 @@ export class ListaJogosComponent implements OnInit {
   constructor(
     public securityService: SecurityService,
     public jogoService: JogoControllerService,
-    public usuarioService : UsuarioControllerService,
+    public usuarioService: UsuarioControllerService,
     private dialog: MatDialog,
     private snackBar: MatSnackBar,
     private router: Router,
-    public carrinhoService: CarrinhoControllerService) {
+    public carrinhoService: CarrinhoControllerService,
+    private route: ActivatedRoute) {
 
   }
 
@@ -108,17 +109,25 @@ export class ListaJogosComponent implements OnInit {
 
     console.log("CARRINHO: ", this.carrinhoDto)
 
-    const jogoCarrinhoDto : JogoCarrinhoDto = new class implements JogoCarrinhoDto {}
+    const jogoCarrinhoDto: JogoCarrinhoDto = new class implements JogoCarrinhoDto {
+    }
     jogoCarrinhoDto.jogoCodigo = jogo.codigo;
     jogoCarrinhoDto.quantidade = 1;
     jogoCarrinhoDto.desconto = 0;
 
-    this.carrinhoDto.jogoCarrinho = [];
-    this.carrinhoDto.jogoCarrinho.push(jogoCarrinhoDto);
+    if (this.carrinhoDto.jogoCarrinho) {
+      this.carrinhoDto.jogoCarrinho.push(jogoCarrinhoDto);
+    }
+    console.log("Carinho com joguinho: ", this.carrinhoDto);
 
-    this.carrinhoService.carrinhoControllerAlterar({body:this.carrinhoDto, id:this.carrinhoDto.codigo||0}).subscribe(
+    this.carrinhoService.carrinhoControllerAlterar({
+      body: this.carrinhoDto,
+      id: this.carrinhoDto.codigo || 0
+    }).subscribe(
       retorno => {
-        console.log("Funcionou:", retorno)},
+        this.carrinhoDto = retorno;
+        console.log("Funcionou:", retorno)
+      },
       error => {
         console.log("ruim: ", +error)
       }
@@ -127,25 +136,27 @@ export class ListaJogosComponent implements OnInit {
 
   private montaCarrinho() {
 
-    let codigo:number = this.securityService.credential.user?.id || 0;
+    this.carrinhoDto = this.route.snapshot.data['carrinho'];
 
-    console.log("Codigo", codigo)
-
-    this.usuarioService.usuarioControllerObterPorId({id: codigo}).subscribe(
-      retorno =>{
-        this.usuarioDto = retorno;
-        console.log("su", this.usuarioDto)
-        codigo =  this.usuarioDto.carrinhoCodigo || 0;
-        console.log("Codigo do caro", codigo)
-        this.carrinhoService.carrinhoControllerObterPorId({id:codigo}).subscribe(
-          retorno =>{
-            this.carrinhoDto = retorno
-            console.log("carinho", this.carrinhoDto)
-          })
-      }
-    )
+    console.log("Carinho: ", this.carrinhoDto);
+    // let codigo:number = this.securityService.credential.user?.id || 0;
+    //
+    // console.log("Codigo", codigo)
+    //
+    // this.usuarioService.usuarioControllerObterPorId({id: codigo}).subscribe(
+    //   retorno =>{
+    //     this.usuarioDto = retorno;
+    //     console.log("su", this.usuarioDto)
+    //     codigo =  this.usuarioDto.carrinhoCodigo || 0;
+    //     console.log("Codigo do caro", codigo)
+    //     this.carrinhoService.carrinhoControllerObterPorId({id:codigo}).subscribe(
+    //       retorno =>{
+    //         this.carrinhoDto = retorno
+    //         console.log("carinho", this.carrinhoDto)
+    //       })
+    //   }
+    // )
   }
-
 
 
 }

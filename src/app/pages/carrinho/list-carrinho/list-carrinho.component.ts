@@ -39,8 +39,23 @@ export class ListCarrinhoComponent implements OnInit{
     this.carrinhoDto = this.route.snapshot.data['carrinho'];
     console.log("JOGOS DESSE CARRINHO",this.carrinhoDto)
 
+
     this.jogoCarrinhoListaDataSource.data = this.carrinhoDto.jogoCarrinho || [];
     console.log("SEI LA", this.jogoCarrinhoListaDataSource.data)
+  }
+
+  retirarJogoDoCarrinho(posicaoRemover:number){
+    if(this.carrinhoDto.jogoCarrinho) {
+      this.carrinhoDto.jogoCarrinho.splice(posicaoRemover,1)
+      this.carrinhoService.carrinhoControllerAlterar(
+        {id:this.carrinhoDto.codigo||0, body:this.carrinhoDto})
+        .subscribe(retorno =>{
+          this.carrinhoDto = retorno;
+          this.jogoCarrinhoListaDataSource.data = this.carrinhoDto.jogoCarrinho || [];
+          console.log("caro alterado ",this.carrinhoDto)
+
+        })
+    }
   }
 
 }

@@ -19,12 +19,15 @@
 
     <ng-container matColumnDef="precoFinal">
       <th mat-header-cell class="header-cell" *matHeaderCellDef> Preço Final</th>
-      <td mat-cell class="cell" *matCellDef="let element"> {{element.precoFinal}} </td>
+      <td mat-cell class="cell" *matCellDef="let element"> {{element.precoFinal}} desconto:{{element.desconto}}</td>
     </ng-container>
 
     <ng-container matColumnDef="acao">
       <th mat-header-cell class="header-cell" *matHeaderCellDef>Ações</th>
       <td mat-cell class="cell" *matCellDef="let element">
+        <button mat-icon-button (click)="retirarJogoDoCarrinho(element.index)" class="button" >
+          <mat-icon>remove_shopping_cart</mat-icon>
+        </button>
       </td>
     </ng-container>
 
