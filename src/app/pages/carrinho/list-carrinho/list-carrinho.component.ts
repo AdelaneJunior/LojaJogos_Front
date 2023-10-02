@@ -15,11 +15,13 @@ import {SecurityService} from "../../../arquitetura/security/security.service";
 })
 export class ListCarrinhoComponent implements OnInit{
 
-  colunasAMostrar : string[] = ['jogoCodigo','jogoNome', 'quantidade','precoFinal', 'acao'];
+  colunasAMostrar : string[] = ['dadosJogo','dadosCompra','quantidade', 'precoFinal', 'acao'];
   jogoCarrinhoListaDataSource: MatTableDataSource<JogoCarrinhoDto> =
     new MatTableDataSource<JogoCarrinhoDto>([])
   carrinhoDto !: CarrinhoDto;
-  jogosCarrinho : JogoCarrinhoDto[] = [];
+  imagensJogos:String[] = [];
+  listaJogos : Array<JogoCarrinhoDto> = [];
+
 
   constructor(
     public carrinhoService : CarrinhoControllerService,
@@ -39,9 +41,18 @@ export class ListCarrinhoComponent implements OnInit{
     this.carrinhoDto = this.route.snapshot.data['carrinho'];
     console.log("JOGOS DESSE CARRINHO",this.carrinhoDto)
 
+    this.listaJogos = this.carrinhoDto.jogoCarrinho || [];
+    console.log("SEI LA", this.listaJogos)
 
-    this.jogoCarrinhoListaDataSource.data = this.carrinhoDto.jogoCarrinho || [];
-    console.log("SEI LA", this.jogoCarrinhoListaDataSource.data)
+    if(this.carrinhoDto.jogoCarrinho){
+        this.carrinhoDto.jogoCarrinho.forEach(jogoCarrinho =>{
+
+          this.imagensJogos.push(jogoCarrinho.caminhoImagemJogo || "")
+
+        })
+      console.log("imagens",this.imagensJogos)
+    }
+
   }
 
   retirarJogoDoCarrinho(posicaoRemover:number){
@@ -51,7 +62,7 @@ export class ListCarrinhoComponent implements OnInit{
         {id:this.carrinhoDto.codigo||0, body:this.carrinhoDto})
         .subscribe(retorno =>{
           this.carrinhoDto = retorno;
-          this.jogoCarrinhoListaDataSource.data = this.carrinhoDto.jogoCarrinho || [];
+          this.listaJogos = this.carrinhoDto.jogoCarrinho || [];
           console.log("caro alterado ",this.carrinhoDto)
 
         })

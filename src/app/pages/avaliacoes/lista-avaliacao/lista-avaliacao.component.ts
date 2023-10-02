@@ -1,5 +1,4 @@
-import {Component, OnInit} from '@angular/core';
-import {ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
@@ -17,7 +16,7 @@ import {AvaliacaoControllerService} from "../../../api/services/avaliacao-contro
 export class ListaAvaliacaoComponent implements OnInit {
 
 
-  displayedColumns: string[] = ['nomeJogo', 'notaGeral', 'acao'];
+  displayedColumns: string[] = ['nome', 'notaGeral', 'acao'];
   avalicaoListaDataSource: MatTableDataSource<AvaliacaoDto> = new MatTableDataSource<AvaliacaoDto>([]);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -43,6 +42,7 @@ export class ListaAvaliacaoComponent implements OnInit {
 
     this.avalicaoService.avaliacaoControllerObterJogosAvaliadosComMedia().subscribe(data => {
       this.avalicaoListaDataSource.data = data;
+      console.log(this.avalicaoListaDataSource.data)
     })
 
   }

@@ -23,7 +23,7 @@ import {UsuarioControllerService} from "../../../api/services/usuario-controller
 })
 export class ListaJogosComponent implements OnInit {
 
-  colunasMostrar = ['codigo', 'caminhoImagem', 'nomeJogo', 'categoria', 'desenvolvedora', 'dataLancamento', 'valor', 'acao'];
+  colunasMostrar = ['codigo', 'caminhoImagem', 'nome', 'categoria', 'desenvolvedora', 'dataLancamento', 'valor', 'acao'];
   jogoListaDataSource: MatTableDataSource<JogoDto> = new MatTableDataSource<JogoDto>([]);
   listaImagemJogo: MatTableDataSource<JogoDto> = new MatTableDataSource<JogoDto>([]);
   admin: boolean = false;
@@ -81,7 +81,7 @@ export class ListaJogosComponent implements OnInit {
     const dialogRef = this.dialog.open(ConfirmationDialog, {
       data: {
         titulo: 'Confirmar?',
-        mensagem: `A exclusão de: ${jogoDto.nomeJogo}?`,
+        mensagem: `A exclusão de: ${jogoDto.nome}?`,
         textoBotoes: {
           ok: 'Sim',
           cancel: 'Cancelar',

@@ -14,7 +14,7 @@ const routes: Routes = [
     component: HomeComponent,
     children: [...JogosRoutes, ...AvaliacoesRoutes, ...CarrinhoRoutes],
     canActivate: [SecurityGuard],
-    data: {security: {roles: ['ROLE_ADMIN']}}
+    data: {security: {roles: ['ROLE_USER', 'ROLE_ADMIN']}}
   },
   {
     path: "acesso",

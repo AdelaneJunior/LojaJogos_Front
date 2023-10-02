@@ -1,0 +1,74 @@
+.example-container {
+  overflow: auto;
+}
+
+table {
+  width: 100%;
+}
+
+.header-cell {
+  background: #750303 !important;
+  color: white !important;
+  font-size: 17px;
+  height: 50px;
+  width: fit-content;
+}
+
+.cell{
+  margin-top: 10px;
+  color: #650303;
+  background: white !important;
+}
+
+.button {
+  align-items: center;
+  color: #d90707 !important;
+  background: white !important;
+  justify-content: flex-start;
+  font-size: 13px;
+}
+
+td, th {
+  text-align: center !important;
+  vertical-align: middle !important;
+}
+
+.textos{
+  font-size: 15px;
+  color: #000000;
+  font-family: "Graphik Semibold";
+  margin-top: 3px;
+}
+
+.desconto{
+  font-size: 15px;
+  color: rgb(24, 194, 9);
+  font-family: "Graphik Semibold";
+  margin-left: 5px;
+}
+
+.preco-final{
+  font-size: 25px;
+  color: #000000;
+  font-family: "Graphik Semibold";
+  margin-top: 30px;
+}
+.imagem{
+  border-radius: 9px;
+  border-color: #750303;
+  border-style: solid;
+  border-width: 1px;
+}
+
+hr.gradient {
+  height: 3px;
+  border: none;
+  border-radius: 6px;
+  background: linear-gradient(
+    70deg,
+    rgb(75, 4, 4) 0%,
+    rgb(117, 3, 3) 21%,
+    rgb(161, 0, 0) 51%,
+    rgb(196, 5, 5) 100%
+  );
+}

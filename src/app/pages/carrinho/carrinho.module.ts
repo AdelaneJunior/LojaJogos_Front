@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import {CommonModule, NgOptimizedImage} from '@angular/common';
 
 import {ListCarrinhoComponent} from './list-carrinho/list-carrinho.component';
 import {HomeCarrinhoComponent} from './home-carrinho/home-carrinho.component';
@@ -10,6 +10,7 @@ import {MatCardModule} from "@angular/material/card";
 import {MatIconModule} from "@angular/material/icon";
 import {CarrinhoResolve} from "./shared/carrinho-resolve.service";
 import {MatTableModule} from "@angular/material/table";
+import {FlexLayoutModule, FlexModule} from "@angular/flex-layout";
 
 
 @NgModule({
@@ -23,7 +24,10 @@ import {MatTableModule} from "@angular/material/table";
     MatButtonModule,
     MatCardModule,
     MatIconModule,
-    MatTableModule
+    MatTableModule,
+    FlexModule,
+    FlexLayoutModule,
+    NgOptimizedImage
   ],
   providers: [
     CarrinhoResolve

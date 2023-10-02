@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {DateAdapter} from "@angular/material/core";
 import {JogoControllerService} from "../../../api/services/jogo-controller.service";
@@ -75,7 +75,7 @@ export class FormJogoComponent {
 
     this.formGroup = this.formBuilder.group({
 
-      nomeJogo: [null, Validators.required],
+      nome: [null, Validators.required],
       desenvolvedora: [null, Validators.required],
       categoria: [null, Validators.required],
       valor: [null, Validators.required],
@@ -105,7 +105,7 @@ export class FormJogoComponent {
         )
       } else {
         let jogoDTO: JogoDto = this.formGroup.value;
-        console.log(this.codigoImagem)
+        console.log("JOGO A SER INCLUIDO: ", this.formGroup.value)
         jogoDTO.codigoImagem = this.codigoImagem;
         this.jogoService.jogoControllerIncluir({body: this.formGroup.value}).subscribe(
           retorno => {
@@ -131,7 +131,7 @@ export class FormJogoComponent {
     const dialogRef = this.dialog.open(ConfirmationDialog, {
       data: {
         titulo: 'Mensagem!!!',
-        mensagem: `Inclusão de: ${jogoDto.nomeJogo} (ID: ${jogoDto.codigo}) realiza com sucesso!`,
+        mensagem: `Inclusão de: ${jogoDto.nome} (ID: ${jogoDto.codigo}) realiza com sucesso!`,
         textoBotoes: {
           ok: 'ok',
         },
@@ -149,7 +149,7 @@ export class FormJogoComponent {
     const dialogRef = this.dialog.open(ConfirmationDialog, {
       data: {
         titulo: 'Mensagem!!!',
-        mensagem: `Alteração de: ${jogoDto.nomeJogo} (ID: ${jogoDto.codigo}) realiza com sucesso!`,
+        mensagem: `Alteração de: ${jogoDto.nome} (ID: ${jogoDto.codigo}) realiza com sucesso!`,
         textoBotoes: {
           ok: 'ok',
         },

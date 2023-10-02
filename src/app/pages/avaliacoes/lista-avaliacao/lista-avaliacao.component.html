@@ -7,8 +7,8 @@
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="avalicaoListaDataSource" matSort>
 
-    <!-- nomeJogo Column -->
-    <ng-container matColumnDef="nomeJogo">
+    <!-- nome Column -->
+    <ng-container matColumnDef="nome">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Nome Jogo </th>
       <td mat-cell *matCellDef="let element"> {{element.nomeJogo}} </td>
     </ng-container>
@@ -16,7 +16,7 @@
     <!-- nota Column -->
     <ng-container matColumnDef="notaGeral">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Media Geral </th>
-      <td mat-cell *matCellDef="let element"> {{element.media}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.mediaGeral}} </td>
     </ng-container>
 
     <!-- Descrição Column -->

@@ -1,39 +1,59 @@
-<section class="example-container mat-elevation-z8" tabindex="0">
+<table class="table">
+  <thead>
+  <tr>
+    <th class="header-cell" fxFlex fxLayout="column" fxLayoutAlign="center center">Dados do jogo</th>
+    <th class="header-cell" fxFlex fxLayout="column" fxLayoutAlign="center center">Quantidade</th>
+    <th class="header-cell" fxFlex fxLayout="column" fxLayoutAlign="center center">Preço Final</th>
+    <th class="header-cell" fxFlex fxLayout="column" fxLayoutAlign="center center">Remover do Carrinho</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr fxLayoutAlign="center center" *ngFor="let item of listaJogos">
+    <td class="cell" fxFlex fxLayout="row" fxLayoutAlign="start center">
+      <div fxFlex fxLayoutAlign="center center">
+        <div>
+          <div>
+            <img src="{{ item.caminhoImagemJogo }}" width="140px" height="150px" class="imagem"
+                 alt="imagem do jogo">
+          </div>
+          <div>
+            <span class="textos">{{ item.jogoNome }}</span>
+          </div>
+          <div>
+            <span class="textos"> R${{ item.precoUnitario }}</span>
+            <span class="desconto" [hidden]="!item.temDesconto">Desconto: {{ item.desconto }}%</span>
+          </div>
+        </div>
+      </div>
+    </td>
+    <td class="cell" fxFlex fxLayout="row" fxLayoutAlign="start center">
+      <div fxFlex fxLayoutAlign="center center">
+        <span class="textos"> {{ item.quantidade }}</span>
+      </div>
+    </td>
+    <td class="cell" fxFlex fxLayout="row" fxLayoutAlign="start center">
+      <div fxFlex fxLayoutAlign="center center">
+        <span class="textos"> R${{ item.precoFinal }}</span>
+      </div>
+    </td>
 
-  <table mat-table [dataSource]="jogoCarrinhoListaDataSource">
-
-    <ng-container matColumnDef="jogoCodigo">
-      <th mat-header-cell class="header-cell" *matHeaderCellDef> Jogo Codigo</th>
-      <td mat-cell class="cell" *matCellDef="let element"> {{element.jogoCodigo}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="jogoNome">
-      <th mat-header-cell class="header-cell" *matHeaderCellDef> Nome Jogo</th>
-      <td mat-cell class="cell" *matCellDef="let element"> {{element.jogoNome}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="quantidade">
-      <th mat-header-cell class="header-cell" *matHeaderCellDef> Quantidade</th>
-      <td mat-cell class="cell" *matCellDef="let element"> {{element.quantidade}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="precoFinal">
-      <th mat-header-cell class="header-cell" *matHeaderCellDef> Preço Final</th>
-      <td mat-cell class="cell" *matCellDef="let element"> {{element.precoFinal}} desconto:{{element.desconto}}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="acao">
-      <th mat-header-cell class="header-cell" *matHeaderCellDef>Ações</th>
-      <td mat-cell class="cell" *matCellDef="let element">
-        <button mat-icon-button (click)="retirarJogoDoCarrinho(element.index)" class="button" >
+    <td class="cell" fxFlex fxLayout="row" fxLayoutAlign="start center">
+      <div fxFlex fxLayoutAlign="center center">
+        <button mat-icon-button (click)="retirarJogoDoCarrinho(listaJogos.indexOf(item))" class="button">
           <mat-icon>remove_shopping_cart</mat-icon>
         </button>
-      </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="colunasAMostrar; sticky: true"></tr>
-    <tr mat-row *matRowDef="let row; columns: colunasAMostrar;"></tr>
-  </table>
-
-  <span> PREÇO FINAL: {{carrinhoDto.precoFinal}} </span>
-</section>
+      </div>
+    </td>
+  </tr>
+  </tbody>
+  <tfoot>
+  <tr>
+    <td colspan="3"></td>
+    <td></td>
+  </tr>
+  </tfoot>
+</table>
+<hr class="gradient">
+<div>
+  <span class="preco-final" fxFlex fxLayoutAlign="end center">Total: R${{carrinhoDto.precoFinal}}</span>
+</div>

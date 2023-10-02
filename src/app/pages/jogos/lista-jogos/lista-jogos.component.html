@@ -5,8 +5,7 @@
     <ng-container matColumnDef="caminhoImagem">
       <th mat-header-cell class="header-cell" *matHeaderCellDef> Capa</th>
       <td mat-cell class="cell" *matCellDef="let element">
-
-        <img src=" {{element.caminhoImagem}}" width="140px" height="150px" class="imagem">
+        <img src="{{element.caminhoImagem}}" width="140px" height="150px" class="imagem">
       </td>
     </ng-container>
 
@@ -15,9 +14,9 @@
       <td mat-cell class="cell" *matCellDef="let element"> {{element.codigo}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="nomeJogo">
+    <ng-container matColumnDef="nome">
       <th mat-header-cell class="header-cell" *matHeaderCellDef> Nome Jogo</th>
-      <td mat-cell class="cell" *matCellDef="let element"> {{element.nomeJogo}} </td>
+      <td mat-cell class="cell" *matCellDef="let element"> {{element.nome}} </td>
     </ng-container>
 
     <ng-container matColumnDef="categoria">
