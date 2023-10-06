@@ -58,6 +58,11 @@
 </form>
 
 
-<input type="file" id="customFile" (change)="onFilechange($event)">
-  <button (click)="upload()">Upload</button>
+<input type="file" id="file-input" (change)="onFilechange($event)" #fileUpload>
+<div class="file-upload">
 
+  <button mat-mini-fab color="primary" class="upload-btn"
+          (click)="fileUpload.click()">
+    <mat-icon>attach_file</mat-icon>
+  </button>
+</div>

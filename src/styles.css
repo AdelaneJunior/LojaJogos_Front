@@ -6,3 +6,6 @@ body{
   width: 99%;
   background: url("assets/chamas-background.jpg") repeat-x;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
