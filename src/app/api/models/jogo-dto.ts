@@ -8,5 +8,6 @@ export interface JogoDto {
   dataLancamento?: string;
   desenvolvedora?: string;
   nome?: string;
+  nomeImagem?: string;
   valor?: number;
 }

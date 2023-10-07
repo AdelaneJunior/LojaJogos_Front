@@ -23,9 +23,11 @@ export class FormJogoComponent {
   paramCodigo: any
   codigoImagem: number = 0;
   file!: File;
-  private readonly BOTAO_ADICIONAR = "Adicionar";
+  private readonly BOTAO_ADICIONAR = "Adicionar Novo Jogo";
   botao: string = this.BOTAO_ADICIONAR;
-  private readonly BOTAO_ALTERAR = "Alterar";
+  private readonly BOTAO_ALTERAR = "Alterar Jogo";
+  fileName !: String;
+  codigoImagemAntiga!: number;
 
   constructor
   (private formBuilder: FormBuilder,
@@ -63,10 +65,12 @@ export class FormJogoComponent {
         this.jogoService.jogoControllerObterPorId({id: this.codigo}).subscribe(
           retorno => {
             this.codigo = retorno.codigo;
-            this.codigoImagem = retorno.codigoImagem;
+            this.codigoImagemAntiga = retorno.codigoImagem;
+            this.codigoImagem = this.codigoImagemAntiga;
             this.botao = this.BOTAO_ALTERAR;
             console.log("Retorno", retorno)
             this.formGroup.patchValue(retorno);
+            this.fileName = retorno.nomeImagem;
           }
         )
       }
@@ -91,32 +95,60 @@ export class FormJogoComponent {
   onSubmit() {
     console.log("Dados: ", this.formGroup.value);
 
-    if (this.file) {
+    if (this.file || (this.codigoImagemAntiga === this.codigoImagem)) {
       let blob: Blob = new Blob()
       blob = this.file;
-      console.log(blob)
-      this.imagemService.imagemControllerUploadImagem({body: {imagemASalvar: blob}})
-        .subscribe(retorno => {
-          console.log(retorno)
-          this.codigoImagem = parseInt(retorno);
+      console.log("BLOBL", blob)
 
-          if (this.codigoImagem != 0) {
+      if (this.codigoImagemAntiga) {
 
-            if (this.codigo != null) {
-              let jogoDTO: JogoDto = this.formGroup.value;
-              jogoDTO.codigoImagem = this.codigoImagem;
-              this.jogoService.jogoControllerAlterar({id: this.codigo, body: jogoDTO,}).subscribe(
-                retorno => {
-                  console.log("alterou:", retorno);
-                  this.confirmarAlteracao(retorno);
-                },
-                error => {
-                  console.log("Deu ruim:", +error);
-                  alert("Não incluido")
+        if (this.codigoImagemAntiga != this.codigoImagem) {
+          console.log("Alterar mudando imagem")
+          this.imagemService.imagemControllerUploadImagem({body: {imagemASalvar: blob}})
+            .subscribe(retorno => {
+              console.log(retorno)
+              this.codigoImagem = parseInt(retorno);
+                if (this.codigo != null) {
+                  let jogoDTO: JogoDto = this.formGroup.value;
+                  jogoDTO.codigoImagem = this.codigoImagem;
+                  this.jogoService.jogoControllerAlterar({id: this.codigo, body: jogoDTO,}).subscribe(
+                    retorno => {
+                      console.log("alterou:", retorno);
+                      this.imagemService.imagemControllerRemover({id: this.codigoImagemAntiga}).subscribe(retorno1 =>{
+                        this.confirmarAlteracao(retorno);
+                      })
+                    },
+                    error => {
+                      console.log("Deu ruim:", +error);
+                      alert("Não incluido")
+                    }
+                  )
                 }
-              )
-            }
-            else {
+            })
+        } else if (this.codigoImagemAntiga === this.codigoImagem) {
+
+          console.log("Alterar sem mudar imagem")
+          if (this.codigo != null) {
+            let jogoDTO: JogoDto = this.formGroup.value;
+            jogoDTO.codigoImagem = this.codigoImagem;
+            this.jogoService.jogoControllerAlterar({id: this.codigo, body: jogoDTO,}).subscribe(
+              retorno => {
+                console.log("alterou:", retorno);
+                this.confirmarAlteracao(retorno);
+              },
+              error => {
+                console.log("Deu ruim:", +error);
+                alert("Não incluido")
+              }
+            )
+          }
+        }
+      } else {
+        console.log("incluir")
+        this.imagemService.imagemControllerUploadImagem({body: {imagemASalvar: blob}})
+          .subscribe(retorno => {
+            console.log(retorno)
+            this.codigoImagem = parseInt(retorno);
               let jogoDTO: JogoDto = this.formGroup.value;
               console.log("JOGO A SER INCLUIDO: ", this.formGroup.value)
               jogoDTO.codigoImagem = this.codigoImagem;
@@ -130,9 +162,9 @@ export class FormJogoComponent {
                   alert("Não incluido")
                 }
               )
-            }
-          }
-        })
+
+          })
+      }
     } else {
       alert("O jogo não tem imagem")
     }
@@ -185,11 +217,9 @@ export class FormJogoComponent {
 
   onFilechange(event: any) {
     this.file = event.target.files[0]
+    this.fileName = this.file.name
     console.log(this.file)
-
-  }
-  chamaOnFileChange(){
-
+    this.codigoImagem = 0;
   }
 
 }

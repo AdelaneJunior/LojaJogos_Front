@@ -3,7 +3,7 @@
 }
 
 .button-left {
-  float: right;
+  float: left;
   margin-right: 10px;
 }
 
@@ -23,4 +23,27 @@ input.example-right-align::-webkit-outer-spin-button,
 input.example-right-align::-webkit-inner-spin-button {
   display: none;
 }
+.selecionaFile{
+  display: none;
+}
 
+.central {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+}
+
+.form {
+  margin-top: 15px;
+}
+
+.textos{
+  font-size: 15px;
+  color: #000000;
+  font-family: "Graphik Semibold";
+  margin-left: 10px;
+}

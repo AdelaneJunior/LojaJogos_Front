@@ -3,66 +3,68 @@
   (ngSubmit)="onSubmit()"
   class="form"
 >
-  <div class="input-row">
+    <div class="input-row">
 
-    <mat-form-field appearance="fill">
-      <mat-label>Nome do Jogo</mat-label>
-      <input matInput formControlName="nome">
-      <mat-error *ngIf="handleError('nome', 'required')">
-        O nome do jogo é obrigatório
-      </mat-error>
-    </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Nome do Jogo</mat-label>
+        <input matInput formControlName="nome">
+        <mat-error *ngIf="handleError('nome', 'required')">
+          O nome do jogo é obrigatório
+        </mat-error>
+      </mat-form-field>
 
-    <mat-form-field appearance="fill">
-      <mat-label>Categoria</mat-label>
-      <input matInput formControlName="categoria">
-      <mat-error *ngIf="handleError('categoria', 'required')">
-        A categoria do jogo é obrigatória
-      </mat-error>
-    </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Categoria</mat-label>
+        <input matInput formControlName="categoria">
+        <mat-error *ngIf="handleError('categoria', 'required')">
+          A categoria do jogo é obrigatória
+        </mat-error>
+      </mat-form-field>
 
-    <mat-form-field appearance="fill">
-      <mat-label>Desenvolvedora</mat-label>
-      <input matInput formControlName="desenvolvedora">
-      <mat-error *ngIf="handleError('desenvolvedora', 'required')">
-        A desenvolvedora do jogo é obrigatória
-      </mat-error>
-    </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Desenvolvedora</mat-label>
+        <input matInput formControlName="desenvolvedora">
+        <mat-error *ngIf="handleError('desenvolvedora', 'required')">
+          A desenvolvedora do jogo é obrigatória
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="input-row">
+      <mat-form-field color="warn" appearance="fill">
+        <mat-label>Data de Lançamento</mat-label>
+        <input matInput [matDatepicker]="picker1" formControlName="dataLancamento">
+        <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1 color="warn"></mat-datepicker>
+        <mat-error *ngIf="handleError('dataLancamento', 'required')">
+          A data de lançamento do jogo é obrigatória
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill" floatLabel="always">
+        <mat-label>Valor</mat-label>
+        <input matInput type="number" formControlName="valor" class="example-right-align" placeholder="0">
+        <mat-error *ngIf="handleError('valor', 'required')">
+          O valor do jogo é obrigatória
+        </mat-error>
+        <span matTextPrefix>R$&nbsp;</span>
+      </mat-form-field>
+    </div>
 
-    <mat-form-field color="warn" appearance="fill">
-      <mat-label>Data de Lançamento</mat-label>
-      <input matInput [matDatepicker]="picker1" formControlName="dataLancamento">
-      <mat-datepicker-toggle matIconSuffix [for]="picker1" ></mat-datepicker-toggle>
-      <mat-datepicker #picker1 color="warn"></mat-datepicker>
-      <mat-error *ngIf="handleError('dataLancamento', 'required')">
-        A data de lançamento do jogo é obrigatória
-      </mat-error>
-    </mat-form-field>
+    <div class="button-left">
+      <button mat-raised-button type="submit" class="button">
+        <mat-icon>add</mat-icon>
+        <span>{{botao}}</span>
+      </button>
+    </div>
 
-    <mat-form-field appearance="fill" floatLabel="always">
-      <mat-label>Valor</mat-label>
-      <input matInput type="number" formControlName="valor" class="example-right-align" placeholder="0">
-      <mat-error *ngIf="handleError('valor', 'required')">
-        O valor do jogo é obrigatória
-      </mat-error>
-      <span matTextPrefix>R$&nbsp;</span>
-    </mat-form-field>
-  </div>
-  <br>
-  <div class="button-left">
-    <button mat-raised-button type="submit" class="button">
-      <mat-icon>add</mat-icon>
-      <span>{{botao}}</span>
-    </button>
-  </div>
 </form>
 
+  <div class="button-left">
+    <button mat-raised-button class="button"
+            (click)="fileUpload.click()">
+      <mat-icon>attach_file</mat-icon>
+      <span>Selecionar Imagem</span>
+    </button>
+    <span class="textos">{{fileName || ''}}</span>
+  </div>
+<input type="file" class="selecionaFile" (change)="onFilechange($event)" #fileUpload>
 
-<input type="file" id="file-input" (change)="onFilechange($event)" #fileUpload>
-<div class="file-upload">
-
-  <button mat-mini-fab color="primary" class="upload-btn"
-          (click)="fileUpload.click()">
-    <mat-icon>attach_file</mat-icon>
-  </button>
-</div>
