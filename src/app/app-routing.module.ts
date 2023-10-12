@@ -7,12 +7,18 @@ import {AvaliacoesRoutes} from "./pages/avaliacoes/avaliacoes-routing.module";
 import {UsuarioInterfaceRoutes} from "./pages/usuario-interface/usuario-interface-routing.module";
 import {CarrinhoRoutes} from "./pages/carrinho/carrinho-routing.module";
 import {SecurityGuard} from "./arquitetura/security/security.guard";
+import {HomePrincipalComponent} from "./pages/home-principal/home-principal.component";
 
 const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
-    children: [...JogosRoutes, ...AvaliacoesRoutes, ...CarrinhoRoutes],
+    children: [...JogosRoutes, ...AvaliacoesRoutes, ...CarrinhoRoutes,
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
+      {
+        path: 'home',
+        component: HomePrincipalComponent
+      }],
     canActivate: [SecurityGuard],
     data: {security: {roles: ['ROLE_USER', 'ROLE_ADMIN']}}
   },

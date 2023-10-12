@@ -1,0 +1,46 @@
+.carousel-container {
+  width: 70vw;
+  height: 75vh;
+  margin: 16px auto;
+  background-color: transparent;
+}
+
+.image-container {
+  max-width: 85%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.igx-carousel {
+  max-width: 100%;
+  width: unset;
+
+}
+
+.igx-nav-dot {
+
+  background: black;
+  box-shadow: none;
+  width: 15px;
+  height: 15px;
+}
+
+.igx-slide {
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
+  width: unset;
+}
+
+.igx-slide img {
+  border-radius: 9px;
+  border-color: #750303;
+  border-style: solid;
+  border-width: 1px;
+  object-fit: fill;
+  max-width: 90%;
+}
+

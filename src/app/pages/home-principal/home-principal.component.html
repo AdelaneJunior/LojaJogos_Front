@@ -1,0 +1,10 @@
+<div class="carousel-container">
+  <igx-carousel [interval]="2300">
+    <igx-slide *ngFor="let slide of slides;">
+      <div class="image-container">
+        <img [src]="slide.src" alt="imagem">
+      </div>
+    </igx-slide>
+    <ng-template igxCarouselIndicator></ng-template>
+  </igx-carousel>
+</div>
